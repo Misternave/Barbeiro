@@ -1,0 +1,25 @@
+{
+  "barbeiros": [
+    {
+      "id": "1",
+      "name": "Cortes Lisboa",
+      "location": "Lisboa",
+      "capacity": "10",
+      "awards": 2,
+      "telephone": "123456789",
+      "email": "ds@cortes.com"
+    },
+    {
+      "nome": "New Barbeiro"
+    },
+    {
+      "nome": "New Barbeiro"
+    },
+    {
+      "nome": "New Barbeiro"
+    },
+    {
+      "nome": "New Barbeiro"
+    }
+  ]
+}
