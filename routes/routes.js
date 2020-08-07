@@ -9,5 +9,8 @@ routes.get("/", barbeiro.index);
 routes.post("/", barbeiro.addBarbeiro);
 
 //barbeiro (ID)
+routes.get("/:id", barbeiro.showBarbeiro);
+
+routes.put("/:id", barbeiro.editBarbeiro);
 
 module.exports = routes;

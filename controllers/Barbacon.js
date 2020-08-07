@@ -5,6 +5,18 @@ const index = (req, res) => {
   res.status(200).json(dataBarbeiro);
 };
 
+const showBarbeiro = (req, res) => {
+  const { id } = req.params;
+
+  //Procura ID barbeiro no ficheiro JSON
+  const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro) {
+    return barbeiro.id == id;
+  });
+  if (!foundBarbeiro) return res.send("Not found Barbeiro");
+
+  res.send(foundBarbeiro);
+};
+
 const addBarbeiro = (req, res) => {
   //Recebe os dados do req.body
   //criar objecto com os dados que proveem do req.body (RAW POSTMAN)
@@ -52,4 +64,37 @@ const addBarbeiro = (req, res) => {
   });
 };
 
-module.exports = { index, addBarbeiro };
+const editBarbeiro = (req, res) => {
+  //req.body
+  const { id } = req.body;
+  let index = 0;
+  console.log("id-" + id);
+  const foundBarbeiro = dataBarbeiro.barbeiros.find(function (
+    barbeiro,
+    foundIndex
+  ) {
+    if (id == barbeiro.id) {
+      index = foundIndex;
+      return true;
+    }
+  });
+  console.log(foundBarbeiro);
+
+  if (!foundBarbeiro) return res.send("Not found instructor");
+
+  //SPREAD - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+  const barbeiro = {
+    ...foundBarbeiro,
+    ...req.body,
+  };
+
+  dataBarbeiro.barbeiros[index] = barbeiro;
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+    if (err) return res.send("write error");
+
+    return res.send(barbeiro);
+  });
+};
+
+module.exports = { index, addBarbeiro, showBarbeiro, editBarbeiro };
