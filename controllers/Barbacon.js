@@ -2,10 +2,6 @@ const dataBarbeiro = require("../data.json");
 const fs = require("fs");
 
 const index = (req, res) => {
-  // for (barbeiro in dataBarbeiro.barbeiros) {
-  //   console.log(barbeiro.name);
-  // }
-
   res.status(200).json(dataBarbeiro);
 };
 
@@ -27,7 +23,15 @@ const addBarbeiro = (req, res) => {
 
   //Valores automaticos
   const id = Number(dataBarbeiro.barbeiros.length + 1);
-  const create_at = Date.now();
+
+  //Convert Date format (2020-08-07T22:44:22.343Z to 08/07/2020)
+  var d = new Date();
+  const create_at = d
+    .toISOString()
+    .substr(0, 10)
+    .split("-")
+    .reverse()
+    .join("/");
 
   dataBarbeiro.barbeiros.push({
     id,
