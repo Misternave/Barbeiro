@@ -1,10 +1,8 @@
 const express = require("express");
-const path = require('path');
+const path = require("path");
 const routes = require("./routes/routes");
-let ejs = require('ejs');
-const morgan = require('morgan');
-
-
+let ejs = require("ejs");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -12,46 +10,20 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(morgan('dev'));
-
-
+app.use(morgan("dev"));
 
 // register view engine
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 //ROUTES
 app.use(routes);
 
-
-
 //LISTEN
-app.listen(3000, ()=>{
-    console.log("heeeey")
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.listen(3000, () => {
+  console.log(`Server ON Port-3000`);
+});
 
 //NOT FOUND
 app.use(function (req, res) {
-    res.status(404).render("404");
-  });
-
+  res.status(404).render("404");
+});

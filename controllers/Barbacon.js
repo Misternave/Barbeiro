@@ -1,21 +1,20 @@
-const cenas = require("../cenas.json")
-const fs = require("fs")
+const dataBarbeiro = require("../data.json");
+const fs = require("fs");
 
-const index = (req, res) =>{
-    res.status(200).json(cenas)
+const index = (req, res) => {
+  res.status(200).json(dataBarbeiro);
 };
 
-const nBarbeiro = (req, res) =>{
-    barbas = req.body
+const addBarbeiro = (req, res) => {
+  newBarbas = req.body;
 
-    cenas.barbeiros.push(barbas)
-    res.status(200).json(cenas)
-    
-    fs.writeFile( "cenas.json", JSON.stringify(cenas,null, 2 ), (err) =>{
-        if (err) throw err;
-        console.log('The file has been saved!');
-      });
+  dataBarbeiro.barbeiros.push(newBarbas);
+  res.status(200).json(dataBarbeiro);
 
+  fs.writeFile("data.json", JSON.stringify(dataBarbeiro, null, 2), (err) => {
+    if (err) throw err;
+    console.log("The file has been saved!");
+  });
 };
 
-module.exports = {index,nBarbeiro}
+module.exports = { index, addBarbeiro };

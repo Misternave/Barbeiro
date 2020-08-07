@@ -1,17 +1,13 @@
-const express = require("express")
-const barbeiro = require("../controllers/Barbacon")
+const express = require("express");
+const barbeiro = require("../controllers/Barbacon");
 
 const routes = express.Router();
 
 //GET
-routes.get("/", barbeiro.index)
+routes.get("/", barbeiro.index);
 
-
-routes.post("/", barbeiro.nBarbeiro)
-
+routes.post("/", barbeiro.addBarbeiro);
 
 //barbeiro (ID)
 
-
-
-module.exports = routes
+module.exports = routes;
