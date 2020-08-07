@@ -10,16 +10,62 @@
       "email": "ds@cortes.com"
     },
     {
-      "nome": "New Barbeiro"
+      "id": "2",
+      "name": "Cortes Lisboa",
+      "location": "Lisboa",
+      "capacity": "10",
+      "awards": 2,
+      "telephone": "123456789",
+      "email": "ds@cortes.com"
     },
     {
-      "nome": "New Barbeiro"
+      "id": "3",
+      "name": "Cortes Lisboa",
+      "location": "Lisboa",
+      "capacity": "10",
+      "awards": 2,
+      "telephone": "123456789",
+      "email": "ds@cortes.com"
     },
     {
-      "nome": "New Barbeiro"
+      "id": 4,
+      "name": "Cortes 88",
+      "location": "porto",
+      "create_at": 1596838858056
     },
     {
-      "nome": "New Barbeiro"
-    }
+      "id": 5,
+      "name": "Cortes 88",
+      "location": "porto",
+      "create_at": 1596838907268
+    },
+    {
+      "id": 6,
+      "name": "Cortes 88",
+      "location": "porto",
+      "create_at": 1596838979365
+    },
+    {
+      "id": 7,
+      "name": "Cortes 88",
+      "location": "porto",
+      "capacity": 20,
+      "create_at": 1596839013974
+    },
+    {
+      "id": 8,
+      "name": "Cortes 88",
+      "location": "porto",
+      "capacity": 20,
+      "create_at": 1596839042712
+    },
+    9,
+    "Cortes 88",
+    "porto",
+    20,
+    null,
+    null,
+    null,
+    1596839059385
   ]
 }

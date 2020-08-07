@@ -1,5 +1,5 @@
 const express = require("express");
-const barbeiro = require("../controllers/Barbacon");
+const barbeiro = require("../controllers/barbaCon");
 
 const routes = express.Router();
 
