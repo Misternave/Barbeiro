@@ -1,7 +1,15 @@
 **//Passos por fazerr //*
 
 --BACKEND--
-Apagar barbeiro
+Criar Model (Reservas)
+Campos Reservas
+{
+    nomePessoa,
+    contatoPessoa,
+    idBarbeiro,
+    Hora,
+    Dia
+}
 
 
 --FRONTEND--

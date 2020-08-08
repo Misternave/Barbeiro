@@ -1,0 +1,40 @@
+{
+  "reservasEfetuadas": [
+    {
+      "id": 1,
+      "name": "Jonny",
+      "telephone": "123456789",
+      "email": "ds@cortes.com",
+      "idBarbeiro": 1,
+      "date": "08-08-2020",
+      "hour": "10:00"
+    },
+    {
+      "id": 2,
+      "name": "Fidas",
+      "telephone": "123456789",
+      "email": "ds@cortes.com",
+      "idBarbeiro": 1,
+      "date": "07-08-2020",
+      "hour": "10:30"
+    },
+    {
+      "id": 3,
+      "name": "Paulo",
+      "telephone": "123456789",
+      "email": "ds@cortes.com",
+      "idBarbeiro": 1,
+      "date": "09-08-2020",
+      "hour": "11:30"
+    },
+    {
+      "id": 4,
+      "name": "Tiago",
+      "telephone": "123456789",
+      "email": "ds@cortes.com",
+      "idBarbeiro": 1,
+      "date": "10-08-2020",
+      "hour": "13:00"
+    }
+  ]
+}
