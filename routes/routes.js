@@ -11,6 +11,6 @@ routes.post("/", barbeiro.addBarbeiro);
 //barbeiro (ID)
 routes.get("/:id", barbeiro.showBarbeiro);
 
-routes.put("/:id", barbeiro.editBarbeiro);
+routes.put("/", barbeiro.editBarbeiro);
 
 module.exports = routes;

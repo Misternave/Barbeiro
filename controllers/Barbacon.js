@@ -65,10 +65,13 @@ const addBarbeiro = (req, res) => {
 };
 
 const editBarbeiro = (req, res) => {
-  //req.body
-  const { id } = req.body;
+  //REQ.PARAMS (/1)
+  //REQ.BODY (enviado por o body)
+  //REQ.querys ( ?page=2&limit=3)
+
+  const id = req.query.id;
   let index = 0;
-  console.log("id-" + id);
+
   const foundBarbeiro = dataBarbeiro.barbeiros.find(function (
     barbeiro,
     foundIndex
@@ -78,9 +81,8 @@ const editBarbeiro = (req, res) => {
       return true;
     }
   });
-  console.log(foundBarbeiro);
 
-  if (!foundBarbeiro) return res.send("Not found instructor");
+  if (!foundBarbeiro) return res.send("Not found barbeiro");
 
   //SPREAD - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
   const barbeiro = {
@@ -90,7 +92,9 @@ const editBarbeiro = (req, res) => {
 
   dataBarbeiro.barbeiros[index] = barbeiro;
 
-  fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+  fs.writeFile("data.json", JSON.stringify(dataBarbeiro, null, 2), function (
+    err
+  ) {
     if (err) return res.send("write error");
 
     return res.send(barbeiro);

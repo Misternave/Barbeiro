@@ -1,8 +1,8 @@
 {
   "barbeiros": [
     {
-      "id": "1",
-      "name": "Cortes Lisboa",
+      "id": 1,
+      "name": "teste spred operator",
       "location": "Lisboa",
       "capacity": "10",
       "awards": 2,
@@ -10,8 +10,8 @@
       "email": "ds@cortes.com"
     },
     {
-      "id": "2",
-      "name": "Cortes Lisboa",
+      "id": 2,
+      "name": "teste spred operator",
       "location": "Lisboa",
       "capacity": "10",
       "awards": 2,
@@ -19,23 +19,13 @@
       "email": "ds@cortes.com"
     },
     {
-      "id": "3",
-      "name": "Cortes Lisboa",
+      "id": 3,
+      "name": "teste spred operator",
       "location": "Lisboa",
       "capacity": "10",
       "awards": 2,
       "telephone": "123456789",
       "email": "ds@cortes.com"
-    },
-    {
-      "id": 4,
-      "name": "Cortes Lisboa",
-      "location": "Porto",
-      "capacity": "12220",
-      "awards": 2,
-      "telephone": "123456789",
-      "email": "ds@cortes.com",
-      "create_at": "07/08/2020"
     }
   ]
 }
