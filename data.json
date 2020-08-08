@@ -2,16 +2,7 @@
   "barbeiros": [
     {
       "id": 1,
-      "name": "teste spred operator",
-      "location": "Lisboa",
-      "capacity": "10",
-      "awards": 2,
-      "telephone": "123456789",
-      "email": "ds@cortes.com"
-    },
-    {
-      "id": 2,
-      "name": "teste spred operator",
+      "name": "",
       "location": "Lisboa",
       "capacity": "10",
       "awards": 2,
@@ -26,6 +17,16 @@
       "awards": 2,
       "telephone": "123456789",
       "email": "ds@cortes.com"
+    },
+    {
+      "id": 4,
+      "name": "teste 4.2",
+      "location": "Lisboa 2",
+      "capacity": "10",
+      "awards": 2,
+      "telephone": "123456789",
+      "email": "ds@cortes.com",
+      "create_at": "08/08/2020"
     }
   ]
 }

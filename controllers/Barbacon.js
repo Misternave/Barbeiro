@@ -25,7 +25,7 @@ const addBarbeiro = (req, res) => {
   //Validação dados introduzidos atraves do POSTMAN (só funciona quando tiveremos um formulario)
 
   for (barbas of newBarbas) {
-    if (req.body[barbas] == "") {
+    if (req.body[barbas] == "" || req.body[barbas] == null) {
       return res.send("preencha todos os campo");
     }
   }
@@ -36,7 +36,7 @@ const addBarbeiro = (req, res) => {
   //Valores automaticos
   const id = Number(dataBarbeiro.barbeiros.length + 1);
 
-  //Convert Date format (2020-08-07T22:44:22.343Z to 08/07/2020)
+  //Convert Date format (2020-08-07T22:44:22.343Z to 07/08/2020)
   var d = new Date();
   const create_at = d
     .toISOString()
@@ -65,11 +65,13 @@ const addBarbeiro = (req, res) => {
 };
 
 const editBarbeiro = (req, res) => {
+  //NOTA//
   //REQ.PARAMS (/1)
   //REQ.BODY (enviado por o body)
   //REQ.querys ( ?page=2&limit=3)
+  //FIM NOTA//
 
-  const id = req.query.id;
+  const id = req.params.id;
   let index = 0;
 
   const foundBarbeiro = dataBarbeiro.barbeiros.find(function (
@@ -101,4 +103,37 @@ const editBarbeiro = (req, res) => {
   });
 };
 
-module.exports = { index, addBarbeiro, showBarbeiro, editBarbeiro };
+const deleteBarbeiro = (req, res) => {
+  const id = req.params.id;
+  let index = 0;
+
+  const foundBarbeiro = dataBarbeiro.barbeiros.find(function (
+    barbeiro,
+    foundIndex
+  ) {
+    if (id == barbeiro.id) {
+      index = foundIndex;
+      return true;
+    }
+  });
+
+  if (!foundBarbeiro) return res.send("Not found barbeiro");
+
+  dataBarbeiro.barbeiros.splice(index, 1);
+
+  fs.writeFile("data.json", JSON.stringify(dataBarbeiro, null, 2), function (
+    err
+  ) {
+    if (err) return res.send("write error");
+
+    return res.send("Barbeiro removido");
+  });
+};
+
+module.exports = {
+  index,
+  addBarbeiro,
+  showBarbeiro,
+  editBarbeiro,
+  deleteBarbeiro,
+};
