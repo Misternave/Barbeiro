@@ -1,69 +1,67 @@
-{
-  "reservasDisponiveis": [
+[
     {
-      "id": 1,
-      "idBarbeiro": 1,
-      "hour": "09:00"
+        "id": 1,
+        "idBarbeiro": 1,
+        "hour": "09:00"
     },
     {
-      "id": 2,
-      "idBarbeiro": 1,
-      "hour": "09:30"
+        "id": 2,
+        "idBarbeiro": 1,
+        "hour": "09:30"
     },
     {
-      "id": 3,
-      "idBarbeiro": 1,
-      "hour": "10:00"
+        "id": 3,
+        "idBarbeiro": 1,
+        "hour": "10:00"
     },
     {
-      "id": 4,
-      "idBarbeiro": 1,
-      "hour": "10:30"
+        "id": 4,
+        "idBarbeiro": 1,
+        "hour": "10:30"
     },
     {
-      "id": 5,
-      "idBarbeiro": 1,
-      "hour": "11:00"
+        "id": 5,
+        "idBarbeiro": 1,
+        "hour": "11:00"
     },
     {
-      "id": 6,
-      "idBarbeiro": 1,
-      "hour": "11:30"
+        "id": 6,
+        "idBarbeiro": 1,
+        "hour": "11:30"
     },
     {
-      "id": 7,
-      "idBarbeiro": 1,
-      "hour": "12:00"
+        "id": 7,
+        "idBarbeiro": 1,
+        "hour": "12:00"
     },
     {
-      "id": 8,
-      "idBarbeiro": 1,
-      "hour": "12:30"
+        "id": 8,
+        "idBarbeiro": 1,
+        "hour": "12:30"
     },
     {
-      "id": 9,
-      "idBarbeiro": 1,
-      "hour": "14:00"
+        "id": 9,
+        "idBarbeiro": 1,
+        "hour": "14:00"
     },
     {
-      "id": 10,
-      "idBarbeiro": 1,
-      "hour": "14:30"
+        "id": 10,
+        "idBarbeiro": 1,
+        "hour": "14:30"
     },
     {
-      "id": 11,
-      "idBarbeiro": 1,
-      "hour": "15:00"
+        "id": 11,
+        "idBarbeiro": 1,
+        "hour": "15:00"
     },
     {
-      "id": 12,
-      "idBarbeiro": 1,
-      "hour": "16:00"
+        "id": 12,
+        "idBarbeiro": 1,
+        "hour": "16:00"
     },
     {
-      "id": 13,
-      "idBarbeiro": 1,
-      "hour": "16:30"
+        "id": 13,
+        "idBarbeiro": 1,
+        "hour": "16:30"
     }
-  ]
-}
+]
