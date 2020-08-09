@@ -34,6 +34,36 @@
       "id": 7,
       "idBarbeiro": 1,
       "hour": "12:00"
+    },
+    {
+      "id": 8,
+      "idBarbeiro": 1,
+      "hour": "12:30"
+    },
+    {
+      "id": 9,
+      "idBarbeiro": 1,
+      "hour": "14:00"
+    },
+    {
+      "id": 10,
+      "idBarbeiro": 1,
+      "hour": "14:30"
+    },
+    {
+      "id": 11,
+      "idBarbeiro": 1,
+      "hour": "15:00"
+    },
+    {
+      "id": 12,
+      "idBarbeiro": 1,
+      "hour": "16:00"
+    },
+    {
+      "id": 13,
+      "idBarbeiro": 1,
+      "hour": "16:30"
     }
   ]
 }
