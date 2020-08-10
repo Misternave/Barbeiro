@@ -43,5 +43,23 @@
         "idBarbeiro": 1,
         "date": "10-08-2020",
         "hour": "09:30"
+    },
+    {
+        "id": 6,
+        "name": "SemedoTesteManual",
+        "telephone": "123456789",
+        "email": "ds@cortes.com",
+        "idBarbeiro": 1,
+        "date": "11-08-2020",
+        "hour": "10:00"
+    },
+    {
+        "id": 7,
+        "name": "SemedoTesteManual",
+        "telephone": "123456789",
+        "email": "ds@cortes.com",
+        "idBarbeiro": 1,
+        "date": "15-08-2020",
+        "hour": "10:00"
     }
 ]

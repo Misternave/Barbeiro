@@ -14,8 +14,12 @@ const fs = require('fs');
 // VARIABLES //
 const index = (req, res) => {
     let dateInput = {
-        date: '10-08-2020',
+        name: 'SemedoTesteManual',
+        telephone: '123456789',
+        email: 'ds@cortes.com',
         idBarbeiro: 1,
+        date: '11-08-2020',
+        hour: '10:00',
     };
 
     let arrayHorasDisponiveis = [];
@@ -41,6 +45,7 @@ const index = (req, res) => {
                 console.log('entrou no IF');
                 return true;
             }
+            console.log('NÂO entrou no IF');
         }
         return false;
     }
@@ -67,10 +72,39 @@ const index = (req, res) => {
                 arrayHorasDisponiveis.push(dataDisp[i].hour);
             }
         }
+        return arrayHorasDisponiveis;
     }
+
+    function registarMarcacao() {
+        const id = Number(datasEfect.length + 1);
+
+        //Descontruir o objeto -> para variaveis separadas
+        let { name, telephone, email, idBarbeiro, date, hour } = dateInput;
+
+        datasEfect.push({
+            id,
+            name,
+            telephone,
+            email,
+            idBarbeiro,
+            date,
+            hour,
+        });
+
+        if (!validaSeExistemReservas()) {
+            fs.writeFile('reservasEfetuadas.json', JSON.stringify(datasEfect, null, 2), (err) => {
+                if (err) throw err;
+                console.log('The file has been saved!');
+            });
+        } else if (validaSeExistemReservas()) {
+            console.log(validaSeExistemReservas());
+        }
+    }
+
     //END FUNCTIONS//
 
-    mostrarHorasDisponiveis(dataDisp, datasEfect);
+    //mostrarHorasDisponiveis(dataDisp, datasEfect);
+    registarMarcacao();
     res.status(200).json(arrayHorasDisponiveis);
 };
 
