@@ -50,10 +50,7 @@ const index = (req, res) => {
         carregaArrayHoras();
         if (existemReservas === true) {
             for (i in datasEfect) {
-                if (
-                    datasEfect[i].date === dateInput.date &&
-                    datasEfect[i].idBarbeiro == dateInput.idBarbeiro
-                ) {
+                if (datasEfect[i].date === dateInput.date &&  datasEfect[i].idBarbeiro == dateInput.idBarbeiro ) {
                     for (x in dataDisp) {
                         if (datasEfect[i].hour === dataDisp[x].hour) {
                             console.log('MATCH' + datasEfect[i].hour + ' ' + dataDisp[x].hour);

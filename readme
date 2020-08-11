@@ -8,8 +8,19 @@ Campos Reservas
     contatoPessoa,
     idBarbeiro,
     Hora,
-    Dia
+    Dia,
+    Email
 }
+
+
+email e password
+
+email: barbeiroNoobs@gmail.com
+pass: Barbeiro2020!
+
+
+---CRIAR UM DISCORD----
+
 
 
 --FRONTEND--

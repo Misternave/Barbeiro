@@ -1,5 +1,6 @@
 const dataBarbeiro = require("../data.json");
 const fs = require("fs");
+const Barbeiro = require("../models/barbeiro")
 
 const index = (req, res) => {
   res.status(200).json(dataBarbeiro);
@@ -20,7 +21,7 @@ const showBarbeiro = (req, res) => {
 const addBarbeiro = (req, res) => {
   //Recebe os dados do req.body
   //criar objecto com os dados que proveem do req.body (RAW POSTMAN)
-  const newBarbas = Object.keys(req.body);
+  const newBarbas = new Barbeiro(req.body);
 
   //Validação dados introduzidos atraves do POSTMAN (só funciona quando tiveremos um formulario)
 
@@ -31,10 +32,10 @@ const addBarbeiro = (req, res) => {
   }
 
   //Descontruir o objeto -> para variaveis separadas
-  let { name, location, capacity, awards, telephone, email } = req.body;
+  let { name, contact, idBarbeiro, hour, date, email } = req.body;
 
   //Valores automaticos
-  const id = Number(dataBarbeiro.barbeiros.length + 1);
+  const idBarbeiro = Number(dataBarbeiro.barbeiros.length + 1);
 
   //Convert Date format (2020-08-07T22:44:22.343Z to 07/08/2020)
   var d = new Date();
@@ -46,14 +47,12 @@ const addBarbeiro = (req, res) => {
     .join("/");
 
   dataBarbeiro.barbeiros.push({
-    id,
     name,
-    location,
-    capacity,
-    awards,
-    telephone,
-    email,
-    create_at,
+    contact, 
+    idBarbeiro, 
+    hour, 
+    date, 
+    email
   });
 
   res.status(200).json(dataBarbeiro);
