@@ -13,6 +13,6 @@ const barbeiroSchema = new Schema(
     { timestamps: true }
 );
 
-const Barbeiro = mongoose.model('Barbeiros', barbeiroSchema);
+const Barbeiro = mongoose.model('Barbeiro', barbeiroSchema); //Barbeiro = barbeiros
 
 module.exports = Barbeiro;

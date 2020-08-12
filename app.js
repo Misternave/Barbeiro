@@ -1,20 +1,24 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
+const morgan = require('morgan');
+const mongoose = require('mongoose');
 const path = require('path');
 const routes = require('./routes/routes');
 let ejs = require('ejs');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
 const app = express();
 dotenv.config();
 
 //Mongoose Connection
 const dbURI =
-    'mongodb+srv://barbeiroNoobs:Barbeiro2020!@barbeirosnoobs.nuofn.mongodb.net/<dbname>?retryWrites=true&w=majority';
+    'mongodb+srv://barbeiroNoobs:Barbeiro2020!@barbeirosnoobs.nuofn.mongodb.net/BarbeirosDB?retryWrites=true&w=majority';
 
 mongoose
-    .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(dbURI, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+    })
     .then((result) => app.listen(3000))
     .then(console.log('listening from port 3000'))
     .catch((err) => console.log(err));
