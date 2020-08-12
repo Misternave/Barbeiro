@@ -4,8 +4,9 @@
 
 
 *Prioridade 1*
-Adicionar reservas ao JSON(reservasEfetuadas.json)
-Criar Ficheiro JSON com dados do Utilizadores
+Criar/Ajustar Model(Barbeiro/Reservas/Horas/) MongoDB
+Adicionar reservas ao MongoDB
+
 Aparecer as reservas efetuadas por cada utilizador
 Aparecer as reservas por dia para cada barbeiro(listagem de clientes por dia)
 
@@ -47,7 +48,7 @@ Configurar o .ENV com os dados (MongoDB/Port)
 
 email e password
 
-email: barbeiroNoobs@gmail.com
+email: barbeironoobs@gmail.com
 pass: Barbeiro2020!
 
 
