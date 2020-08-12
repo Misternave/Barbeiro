@@ -1,6 +1,23 @@
-**//Passos por fazerr //*
+**//Passos por fazer //*
 
 --BACKEND--
+
+
+*Prioridade 1*
+Adicionar reservas ao JSON(reservasEfetuadas.json)
+Criar Ficheiro JSON com dados do Utilizadores
+Aparecer as reservas efetuadas por cada utilizador
+Aparecer as reservas por dia para cada barbeiro(listagem de clientes por dia)
+
+*Prioridade 2*
+
+Ajustar Model (Barbeiro)
+{
+    Date 
+    Time
+    ID(não precisa de existir)
+}
+
 Criar Model (Reservas)
 Campos Reservas
 {
@@ -11,6 +28,21 @@ Campos Reservas
     Dia,
     Email
 }
+
+Criar Model (Utilizadores)
+Campos Reservas
+{
+    nomePessoa,
+    contatoPessoa,
+    Email
+}
+
+*Prioridade 3*
+
+Configurar o .ENV com os dados (MongoDB/Port)
+
+
+
 
 
 email e password
