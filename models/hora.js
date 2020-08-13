@@ -14,4 +14,4 @@ const horaSchema = new Schema({
 
 const Hora = mongoose.model('HorasDisponiveis', horaSchema);
 
-module.exports = Hour;
+module.exports = Hora;

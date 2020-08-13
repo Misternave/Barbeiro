@@ -16,15 +16,15 @@ const index = (req, res) => {
 };
 
 const showBarbeiro = (req, res) => {
-    const { id } = req.params;
+//     const { id } = req.params;
 
     //Procura ID barbeiro no ficheiro JSON
-    const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro) {
-        return barbeiro.id == id;
-    });
-    if (!foundBarbeiro) return res.send('Not found Barbeiro');
+//     const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro) {
+//         return barbeiro.id == id;
+//     });
+//     if (!foundBarbeiro) return res.send('Not found Barbeiro');
 
-    res.send(foundBarbeiro);
+//     res.send(foundBarbeiro);
 };
 
 const addBarbeiro = (req, res) => {
@@ -78,53 +78,53 @@ const editBarbeiro = (req, res) => {
     //REQ.querys ( ?page=2&limit=3)
     //FIM NOTA//
 
-    const id = req.params.id;
-    let index = 0;
+    // const id = req.params.id;
+    // let index = 0;
 
-    const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro, foundIndex) {
-        if (id == barbeiro.id) {
-            index = foundIndex;
-            return true;
-        }
-    });
+    // const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro, foundIndex) {
+    //     if (id == barbeiro.id) {
+    //         index = foundIndex;
+    //         return true;
+    //     }
+    // });
 
-    if (!foundBarbeiro) return res.send('Not found barbeiro');
+    // if (!foundBarbeiro) return res.send('Not found barbeiro');
 
-    //SPREAD - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-    const barbeiro = {
-        ...foundBarbeiro,
-        ...req.body,
-    };
+    // //SPREAD - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    // const barbeiro = {
+    //     ...foundBarbeiro,
+    //     ...req.body,
+    // };
 
-    dataBarbeiro.barbeiros[index] = barbeiro;
+    // dataBarbeiro.barbeiros[index] = barbeiro;
 
-    fs.writeFile('data.json', JSON.stringify(dataBarbeiro, null, 2), function (err) {
-        if (err) return res.send('write error');
+    // fs.writeFile('data.json', JSON.stringify(dataBarbeiro, null, 2), function (err) {
+    //     if (err) return res.send('write error');
 
-        return res.send(barbeiro);
-    });
+    //     return res.send(barbeiro);
+    // });
 };
 
 const deleteBarbeiro = (req, res) => {
-    const id = req.params.id;
-    let index = 0;
+    // const id = req.params.id;
+    // let index = 0;
 
-    const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro, foundIndex) {
-        if (id == barbeiro.id) {
-            index = foundIndex;
-            return true;
-        }
-    });
+    // const foundBarbeiro = dataBarbeiro.barbeiros.find(function (barbeiro, foundIndex) {
+    //     if (id == barbeiro.id) {
+    //         index = foundIndex;
+    //         return true;
+    //     }
+    // });
 
-    if (!foundBarbeiro) return res.send('Not found barbeiro');
+    // if (!foundBarbeiro) return res.send('Not found barbeiro');
 
-    dataBarbeiro.barbeiros.splice(index, 1);
+    // dataBarbeiro.barbeiros.splice(index, 1);
 
-    fs.writeFile('data.json', JSON.stringify(dataBarbeiro, null, 2), function (err) {
-        if (err) return res.send('write error');
+    // fs.writeFile('data.json', JSON.stringify(dataBarbeiro, null, 2), function (err) {
+    //     if (err) return res.send('write error');
 
-        return res.send('Barbeiro removido');
-    });
+    //     return res.send('Barbeiro removido');
+    // });
 };
 
 module.exports = {
