@@ -4,7 +4,8 @@
 
 
 *Prioridade 1*
-Criar/Ajustar Model(Barbeiro/Reservas/Horas/) MongoDB
+
+
 Adicionar reservas ao MongoDB
 
 Aparecer as reservas efetuadas por cada utilizador
@@ -12,31 +13,6 @@ Aparecer as reservas por dia para cada barbeiro(listagem de clientes por dia)
 
 *Prioridade 2*
 
-Ajustar Model (Barbeiro)
-{
-    Date 
-    Time
-    ID(não precisa de existir)
-}
-
-Criar Model (Reservas)
-Campos Reservas
-{
-    nomePessoa,
-    contatoPessoa,
-    idBarbeiro,
-    Hora,
-    Dia,
-    Email
-}
-
-Criar Model (Utilizadores)
-Campos Reservas
-{
-    nomePessoa,
-    contatoPessoa,
-    Email
-}
 
 *Prioridade 3*
 
