@@ -1,7 +1,7 @@
 {
   "name": "barbeiros",
   "version": "1.0.0",
-  "description": "",
+  "description": "**//Passos por fazer //*",
   "main": "app.js",
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -16,5 +16,13 @@
     "start": "nodemon start"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Misternave/Barbeiro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Misternave/Barbeiro/issues"
+  },
+  "homepage": "https://github.com/Misternave/Barbeiro#readme"
 }

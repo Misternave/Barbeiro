@@ -1,15 +1,18 @@
 const express = require('express');
-const barbeiro = require('../controllers/barbaCon');
 const reserva = require('../controllers/reservaCon');
-const hora = require('../controllers/horaCon');
+const barbeiro = require('../controllers/barbaCon');
+
+// const hora = require('../controllers/horaCon');
 
 
 const routes = express.Router();
 //RESERVA//
 routes.get('/reserva', reserva.index);
+routes.post('/reserva', reserva.addReserva);
+
 //HORA//
-routes.get('/hora', hora.index);
-routes.post('/hora', hora.addHora);
+// routes.get('/hora', hora.index);
+// routes.post('/hora', hora.addHora);
 
 //barbeiro (ID) //
 routes.get('/:id', barbeiro.showBarbeiro);

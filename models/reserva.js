@@ -9,6 +9,8 @@ const reservaSchema = new Schema(
         telephone: { type: Number, required: true },
         email: { type: String, required: true },
         idBarbeiro: { type: mongoose.Schema.Types.ObjectId, ref: 'barbeiro' },
+        datetime:{type:Date, required: true},
+        
         // idUtilizador: { type: Int32, required: true },
         // idServico: { type: In32, required: true },
     },
@@ -16,4 +18,4 @@ const reservaSchema = new Schema(
 );
 const Reserva = mongoose.model('Reservas', reservaSchema);
 
-module.exports = Reservas;
+module.exports = Reserva;
