@@ -1,23 +1,28 @@
 const dataBarbeiro = require('../data.json');
 const fs = require('fs');
 const Barbeiro = require('../models/barbeiro');
+const Reserva = require('../models/reserva');
 
-const index = (req, res) => {
-    const arrayBarbeiros = Barbeiro.find()
-        .sort({ createdAt: -1 }) //sort allows to change the order by the timestamp
-        .then((result) => {
-            // res.render('blogs/index', { title: 'Blogs', blogs: result }); // we are passing in the object, the information to the render page tittle, and the blogs
-            // the blogs will pass the information retrieve from the DB to the view file
-         //   res.status(200).json(result);
-         res.render("index",{barbeiros : result})
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+const index = async (req, res) => {
+    const arrayBarbeiros = await getBarbeiros();
+    
+    //Barbeiro.find()
+    //.sort({ createdAt: -1 }) //sort allows to change the order by the timestamp
+    //.then((result) => {
+    
+    //   arrayBarbeiros.push(result[0].name);
+    //})
+    //.catch((err) => {
+    //    console.log(err);
+    //});
 
-
-
+    res.render("index",{barbeiros : arrayBarbeiros})
 };
+
+async function getBarbeiros() {
+    let result = await Barbeiro.find().sort({ createdAt: -1 });
+    return result;
+}
 
 const showBarbeiro = (req, res) => {
 //     const { id } = req.params;
