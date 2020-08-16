@@ -3,16 +3,20 @@ const fs = require('fs');
 const Barbeiro = require('../models/barbeiro');
 
 const index = (req, res) => {
-    Barbeiro.find()
+    const arrayBarbeiros = Barbeiro.find()
         .sort({ createdAt: -1 }) //sort allows to change the order by the timestamp
         .then((result) => {
             // res.render('blogs/index', { title: 'Blogs', blogs: result }); // we are passing in the object, the information to the render page tittle, and the blogs
             // the blogs will pass the information retrieve from the DB to the view file
-            res.status(200).json(result);
+         //   res.status(200).json(result);
+         res.render("index",{barbeiros : result})
         })
         .catch((err) => {
             console.log(err);
         });
+
+
+
 };
 
 const showBarbeiro = (req, res) => {

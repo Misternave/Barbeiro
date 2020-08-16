@@ -1,14 +1,76 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
-    </head>
-    <body>
-        <h1>Helloodssadasdsaoo</h1>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Home</title>
+   </head>
+   <body>
+      <h1>Hello NOOBS Barbeiros!</h1>
+      <div class="section booking">
+         <div>
+            <div>
+               <div>
+                  <h1>Marcações</h1>
+               </div>
+            </div>
+            <div>
+               <div>
+                  <form method="POST" action="localhost:3000/reserva" accept-charset="UTF-8">
+                     <input name="_token" type="hidden" value="FQK4HZPV5G7cBaDRpqfwwHmNwu0VhCN6Im5dKNDw">
+                     <div>
+                        <div>
+                           <div>
+                              <label>Barbeiros</label>
+                              <select name="barbeiro" required>
+                                <% if(barbeiros.length > 0) { %> <%
+                                    barbeiros.forEach(barbeiro => { %>
 
-        <form action="" class="add-form">
-            label
-        </form>
-    </body>
+                                 <option value="<%= barbeiro._id %"><%= barbeiro.name %></option>
+                                 <%})%> <%} else { %>
+            <option>Nothing to display</option>
+            <% } %>
+                              </select>
+                             
+                           </div>
+                           <div>
+                              <label>Serviço</label>
+                              <select name="tipo_corte" required>
+                                 <option value="1">Cabelo + Barba - 18€</option>
+                                 <option value="2">Cabelo - 13€</option>
+                                 <option value="3">Barba - 8.5€</option>
+                                 <option value="4">Cabelo Criança - 10€</option>
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                     <div>
+                        <div>
+                           <div>
+                              <label>Data</label>
+                              <input type="date" name="data" placeholder="MÊS / DIA / ANO" required>
+                           </div>
+                        </div>
+                        <div>
+                           <div>
+                              <label>Hora</label>
+                              <select name="hora">
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                     <div>
+                        <div>
+                           <div>
+                              <label for="exampleTextarea">Observações</label>
+                              <textarea rows="6" name="comentario"  placeholder="Escreve aqui uma nota para esta marcação"></textarea>
+                           </div>
+                           <button type="submit">Confirmar</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>
