@@ -1,20 +1,20 @@
-// // CABULAS //
-// /*Ficheiros JSON*/
-// dataDisp - Horas disponiveis para marcar
-// datasEfect - Datas das Reservas efetuadas
-// /*Nomes dos Arrays JSON*/
-// horasDisp - Horas disponiveis para marcação
-// resEfect - Reservas efetuadas
-
 const Reserva = require('../models/reserva');
 const dataDisp = require('../reservasDisponiveis.json');
 const datasEfect = require('../reservasEfetuadas.json');
+const barbeiros = require('../controllers/Barbacon');
 
 const fs = require('fs');
 
 // VARIABLES //
-const index = (req, res) => {
-  res.status(200).json({ value: 'futuras reservas' });
+const index = async (req, res) => {
+  const arrayBarbeiros = await barbeiros.getBarbeiros();
+
+  res.render('index', { barbeiros: arrayBarbeiros });
+};
+
+const getReserva = (req, res) => {
+  console.log('entrou');
+  res.json({ date: req.query.date, idbarbeiro: req.query.idbarbeiro });
 };
 
 const addReserva = (req, res) => {
@@ -49,6 +49,7 @@ const addReserva = (req, res) => {
 module.exports = {
   index,
   addReserva,
+  getReserva,
 };
 
 /*

@@ -4,11 +4,11 @@ const barbeiro = require('../controllers/barbaCon');
 
 // const hora = require('../controllers/horaCon');
 
-
 const routes = express.Router();
 //RESERVA//
-routes.get('/reserva', reserva.index);
-routes.post('/reserva', reserva.addReserva);
+routes.get('/', reserva.index);
+routes.post('/', reserva.addReserva);
+routes.get('/availabletime', reserva.getReserva);
 
 //HORA//
 // routes.get('/hora', hora.index);
@@ -20,7 +20,7 @@ routes.put('/:id', barbeiro.editBarbeiro);
 routes.delete('/:id', barbeiro.deleteBarbeiro);
 
 //BARBEIRO//
-routes.get('/', barbeiro.index);
-routes.post('/', barbeiro.addBarbeiro);
+routes.get('/barbeiro', barbeiro.index);
+routes.post('/barbeiro', barbeiro.addBarbeiro);
 
 module.exports = routes;

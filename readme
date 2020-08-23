@@ -29,6 +29,9 @@ Ao selecionar a data ele deve criar um evento para carregar as horas disponiveis
 };
 }
 
+
+//Mudar o formato da data do DatePicker (Talvez JQUERY?)
+
 --BACKEND--
 
 
