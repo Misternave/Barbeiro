@@ -13,8 +13,32 @@ const index = async (req, res) => {
 };
 
 const getReserva = (req, res) => {
-  console.log('entrou');
-  res.json({ date: req.query.date, idbarbeiro: req.query.idbarbeiro });
+  let startDate = req.query.date;
+
+  const dummyDate = {
+    datetime: {
+      $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
+      $lt: new Date(new Date(startDate).setHours(23, 59, 59)),
+    },
+  };
+
+  Reserva.find(dummyDate).then((reservas) => {
+    if (
+      typeof reservas != 'undefined' &&
+      reservas != null &&
+      reservas.length != null &&
+      reservas.length > 0
+    ) {
+      res.status(200).json(reservas);
+    }
+
+    let arrayHorasDisponiveis = [];
+    for (x in dataDisp) {
+      arrayHorasDisponiveis.push(dataDisp[x].hour);
+    }
+    res.status(200).json(arrayHorasDisponiveis);
+    //Fim da Promise
+  });
 };
 
 const addReserva = (req, res) => {
@@ -31,19 +55,6 @@ const addReserva = (req, res) => {
   //Selecionar a data (validar se existe vagas disponiveis -> Se sim mostra as horas vagas)
   // Find episodes that aired on this exact date
   //YYY-MMM-DDD
-
-  let startDate = '2020-08-12';
-
-  const dummyDate = {
-    datetime: {
-      $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
-      $lt: new Date(new Date(startDate).setHours(23, 59, 59)),
-    },
-  };
-
-  Reserva.find(dummyDate).then((reservas) => {});
-
-  res.status(200).json(reservas);
 };
 
 module.exports = {

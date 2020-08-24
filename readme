@@ -3,34 +3,11 @@
 
 Ao selecionar a data ele deve criar um evento para carregar as horas disponiveis.
 
-{
-
-    algo parecido
-
-    function fetchAvailableTimes(){
-	$.ajax({
-        url: window.location.origin+'/api/v1.0/store/'+$('.f_store').val()+'/availabletime?date='+$('#selectDate').val(),
-        method: 'GET',
-        dataType: 'json',
-        success: function (d) {
-        	var horas = d;
-        	if(horas.length == 0){
-        		var option = new Option('Sem horas disponíveis',0);
-        		$('.f_hour').append($(option));
-        		return;
-        	}
-
-        	for(i = 0 ; i < horas.length ; i++){
-        		var option = new Option(horas[i],horas[i]);
-        		$('.f_hour').append($(option));
-        	}
-        }
-    });
-};
-}
 
 
 //Mudar o formato da data do DatePicker (Talvez JQUERY?)
+//Mudar formato MongoDB horas pra Timestamp?
+
 
 --BACKEND--
 
