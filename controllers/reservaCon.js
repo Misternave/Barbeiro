@@ -27,7 +27,7 @@ const getReserva = (req, res) => {
     if (typeof valor === 'object') valor = JSON.stringify(valor);
     return valor.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
   }
-
+  //Comunicação com MongoDb
   Reserva.find(dummyDate).then((reservas) => {
     if (
       typeof reservas != 'undefined' &&
@@ -35,8 +35,6 @@ const getReserva = (req, res) => {
       reservas.length != null &&
       reservas.length > 0
     ) {
-      //testes
-
       for (x in dataDisp) {
         let test = dataDisp[x].hour;
 
@@ -51,11 +49,10 @@ const getReserva = (req, res) => {
       arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
         return reservas1.indexOf(val) == -1;
       });
-
-      console.log('-------');
+      //
+      // //Senão existir nenhuma reserva marcada, mostra automaticamente todas as horas disponiveis
+      //
     } else {
-      // //Senão existir nenhuma reserva disponivel mostrar automaticamente todas as horas disponiveis
-
       for (x in dataDisp) {
         arrayHorasDisponiveis.push(teste(dataDisp[x].hour));
       }
@@ -66,19 +63,34 @@ const getReserva = (req, res) => {
 };
 
 const addReserva = (req, res) => {
-  let dateInput = {
-    date: '12-08-2020',
-    idBarbeiro: '5f346a69c4205d1c60c410c6',
-  };
+  // let dateInput = {
+  //   date: '12-08-2020',
+  //   idBarbeiro: '5f346a69c4205d1c60c410c6',
+  // };
+  // console.log('INICIAL - ' + req.body.data);
 
-  //-> Selecionar Data
-  //    -> Mostrar as horas vagas
-  //        ->Selecionar a hora pretendida
-  //            ->Gravar a marcação
+  let TestDate = req.body.data + 'T' + req.body.hour + ':00';
+  TestDate = Date.parse(TestDate);
 
-  //Selecionar a data (validar se existe vagas disponiveis -> Se sim mostra as horas vagas)
-  // Find episodes that aired on this exact date
-  //YYY-MMM-DDD
+  function convertDatime(timestamp) {
+    var time = new Date(timestamp).getTime();
+    var date = new Date(timestamp);
+    return date.toString();
+  }
+
+  const reservaInput = new Reserva({
+    idBarbeiro: req.body.barbeiro,
+    idService: req.body.tipo_corte,
+    datetime: convertDatime(TestDate),
+    comment: req.body.comentario,
+  });
+
+  reservaInput.save(function (err, reservaInput) {
+    if (err) return console.error(err);
+    console.log('gravaddo');
+  });
+
+  res.send(reservaInput);
 };
 
 module.exports = {

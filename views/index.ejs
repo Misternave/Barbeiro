@@ -15,7 +15,7 @@
         </div>
         <div>
           <div>
-            <form method="POST" action="localhost:3000/reserva" accept-charset="UTF-8">
+            <form method="POST" action="/">
               <div>
                 <div>
                   <div>
@@ -23,7 +23,7 @@
                     <select id="selectBarbeiro" name="barbeiro" required>
                       <% if(barbeiros.length > 0) { %> <% barbeiros.forEach(barbeiro => { %>
 
-                      <option value="<%= barbeiro._id %>"> <%=barbeiro.name %></option>
+                      <option value="<%= barbeiro._id %>"><%=barbeiro.name %></option>
                       <%})%> <%} else { %>
                       <option>Nothing to display</option>
                       <% } %>
@@ -56,7 +56,7 @@
                 <div>
                   <div>
                     <label>Hora</label>
-                    <select class="f_hour" name="hora"> </select>
+                    <select class="f_hour" name="hour"></select>
                   </div>
                 </div>
               </div>

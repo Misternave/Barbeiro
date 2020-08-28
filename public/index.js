@@ -24,6 +24,5 @@ date_input.onchange = function () {
         var option = new Option(horas[i], horas[i]);
         hour_input.appendChild(option);
       }
-      console.log(horas);
     });
 };
