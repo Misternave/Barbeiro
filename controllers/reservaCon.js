@@ -5,7 +5,6 @@ const barbeiros = require('../controllers/Barbacon');
 
 const fs = require('fs');
 
-// VARIABLES //
 const index = async (req, res) => {
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
@@ -13,7 +12,9 @@ const index = async (req, res) => {
 };
 
 const getReserva = (req, res) => {
+  // VARIABLES //
   let startDate = req.query.date;
+  let arrayHorasDisponiveis = [];
 
   const dummyDate = {
     datetime: {
@@ -22,6 +23,11 @@ const getReserva = (req, res) => {
     },
   };
 
+  function teste(valor) {
+    if (typeof valor === 'object') valor = JSON.stringify(valor);
+    return valor.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+  }
+
   Reserva.find(dummyDate).then((reservas) => {
     if (
       typeof reservas != 'undefined' &&
@@ -29,15 +35,33 @@ const getReserva = (req, res) => {
       reservas.length != null &&
       reservas.length > 0
     ) {
-      res.status(200).json(reservas);
-    }
+      //testes
 
-    let arrayHorasDisponiveis = [];
-    for (x in dataDisp) {
-      arrayHorasDisponiveis.push(dataDisp[x].hour);
+      for (x in dataDisp) {
+        let test = dataDisp[x].hour;
+
+        test = test.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+        arrayHorasDisponiveis.push(test);
+      }
+
+      let reservas1 = reservas.map(function (reserva, index) {
+        return teste(reserva.datetime);
+      });
+
+      arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
+        return reservas1.indexOf(val) == -1;
+      });
+
+      console.log('-------');
+    } else {
+      // //Senão existir nenhuma reserva disponivel mostrar automaticamente todas as horas disponiveis
+
+      for (x in dataDisp) {
+        arrayHorasDisponiveis.push(teste(dataDisp[x].hour));
+      }
     }
     res.status(200).json(arrayHorasDisponiveis);
-    //Fim da Promise
+    //**Fim da Promise**//
   });
 };
 
