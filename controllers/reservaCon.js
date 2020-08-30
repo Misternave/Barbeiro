@@ -23,7 +23,8 @@ const getReserva = (req, res) => {
     },
   };
 
-  function teste(valor) {
+  //funcação que converte datetime UTC para horas (HH:MM)
+  function convertUTCDateTimeToTime(valor) {
     if (typeof valor === 'object') valor = JSON.stringify(valor);
     return valor.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
   }
@@ -36,14 +37,14 @@ const getReserva = (req, res) => {
       reservas.length > 0
     ) {
       for (x in dataDisp) {
-        let test = dataDisp[x].hour;
+        let hour = dataDisp[x].hour;
 
-        test = test.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-        arrayHorasDisponiveis.push(test);
+        hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+        arrayHorasDisponiveis.push(hour);
       }
 
       let reservas1 = reservas.map(function (reserva, index) {
-        return teste(reserva.datetime);
+        return convertUTCDateTimeToTime(reserva.datetime);
       });
 
       arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
@@ -54,7 +55,7 @@ const getReserva = (req, res) => {
       //
     } else {
       for (x in dataDisp) {
-        arrayHorasDisponiveis.push(teste(dataDisp[x].hour));
+        arrayHorasDisponiveis.push(convertUTCDateTimeToTime(dataDisp[x].hour));
       }
     }
     res.status(200).json(arrayHorasDisponiveis);
@@ -63,25 +64,19 @@ const getReserva = (req, res) => {
 };
 
 const addReserva = (req, res) => {
-  // let dateInput = {
-  //   date: '12-08-2020',
-  //   idBarbeiro: '5f346a69c4205d1c60c410c6',
-  // };
-  // console.log('INICIAL - ' + req.body.data);
+  let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
 
-  let TestDate = req.body.data + 'T' + req.body.hour + ':00';
-  TestDate = Date.parse(TestDate);
-
-  function convertDatime(timestamp) {
-    var time = new Date(timestamp).getTime();
-    var date = new Date(timestamp);
-    return date.toString();
+  function convertUTCTimeToLocalTime(datetime) {
+    const date = new Date(datetime);
+    var offset = date.getTimezoneOffset();
+    date.setMinutes(date.getMinutes() - offset);
+    return date;
   }
 
   const reservaInput = new Reserva({
     idBarbeiro: req.body.barbeiro,
     idService: req.body.tipo_corte,
-    datetime: convertDatime(TestDate),
+    datetime: convertUTCTimeToLocalTime(ConcactDateTime),
     comment: req.body.comentario,
   });
 
