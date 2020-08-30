@@ -2,7 +2,7 @@ const Reserva = require('../models/reserva');
 const dataDisp = require('../reservasDisponiveis.json');
 const datasEfect = require('../reservasEfetuadas.json');
 const barbeiros = require('../controllers/Barbacon');
-
+const { localTime } = require('../utils/lib');
 const fs = require('fs');
 
 const index = async (req, res) => {
@@ -14,15 +14,18 @@ const index = async (req, res) => {
 const getReserva = (req, res) => {
   // VARIABLES //
   let startDate = req.query.date;
+  let idBarbeiro = req.query.idbarbeiro;
   let arrayHorasDisponiveis = [];
 
   const dummyDate = {
     datetime: {
-      $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
-      $lt: new Date(new Date(startDate).setHours(23, 59, 59)),
+      $gte: localTime(new Date(new Date(startDate).setHours(00, 00, 00))),
+      $lt: localTime(new Date(new Date(startDate).setHours(23, 59, 59))),
     },
+    idBarbeiro: idBarbeiro,
   };
 
+  console.log(dummyDate);
   //funcação que converte datetime UTC para horas (HH:MM)
   function convertUTCDateTimeToTime(valor) {
     if (typeof valor === 'object') valor = JSON.stringify(valor);
@@ -30,6 +33,7 @@ const getReserva = (req, res) => {
   }
   //Comunicação com MongoDb
   Reserva.find(dummyDate).then((reservas) => {
+    console.log('encontrado' + reservas);
     if (
       typeof reservas != 'undefined' &&
       reservas != null &&
@@ -66,26 +70,18 @@ const getReserva = (req, res) => {
 const addReserva = (req, res) => {
   let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
 
-  function convertUTCTimeToLocalTime(datetime) {
-    const date = new Date(datetime);
-    var offset = date.getTimezoneOffset();
-    date.setMinutes(date.getMinutes() - offset);
-    return date;
-  }
-
   const reservaInput = new Reserva({
     idBarbeiro: req.body.barbeiro,
     idService: req.body.tipo_corte,
-    datetime: convertUTCTimeToLocalTime(ConcactDateTime),
+    datetime: localTime(ConcactDateTime),
     comment: req.body.comentario,
   });
 
   reservaInput.save(function (err, reservaInput) {
     if (err) return console.error(err);
-    console.log('gravaddo');
   });
 
-  res.send(reservaInput);
+  res.redirect('/');
 };
 
 module.exports = {

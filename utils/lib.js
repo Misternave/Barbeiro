@@ -1,4 +1,11 @@
 module.exports = {
+  localTime: function (timestamp) {
+    const date = new Date(timestamp);
+    var offset = date.getTimezoneOffset();
+    date.setMinutes(date.getMinutes() - offset);
+    return date;
+  },
+
   age: function (timestamp) {
     const today = new Date();
     const birthDate = new Date(timestamp);
