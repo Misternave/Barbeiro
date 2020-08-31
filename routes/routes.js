@@ -1,7 +1,7 @@
 const express = require('express');
 const reserva = require('../controllers/reservaCon');
 const barbeiro = require('../controllers/barbaCon');
-
+const utilizador = require('../controllers/utilizadorCon');
 // const hora = require('../controllers/horaCon');
 
 const routes = express.Router();
@@ -23,4 +23,6 @@ routes.delete('/:id', barbeiro.deleteBarbeiro);
 routes.get('/barbeiro', barbeiro.index);
 routes.post('/barbeiro', barbeiro.addBarbeiro);
 
+//UTILIZAODR//
+routes.post('/register', utilizador.index);
 module.exports = routes;

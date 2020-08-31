@@ -1,28 +1,26 @@
 **//Passos por fazer //*
 --FRONTEND--
-
-
 //Mudar o formato da data do DatePicker (Talvez JQUERY?)
 //Mudar formato MongoDB horas pra Timestamp?
 
 
 --BACKEND--
 
-
 *Prioridade 1*
+Criar login JWT
+Password com Ecrypt
+Criar Model Utilizador
+Criar relacão reserva <-> Utilizador
 
-
-Adicionar reservas ao MongoDB
-
-Aparecer as reservas efetuadas por cada utilizador
-Aparecer as reservas por dia para cada barbeiro(listagem de clientes por dia)
 
 *Prioridade 2*
-
+Login / Registo dos utilizadores
+Aparecer as reservas efetuadas no login do utilizador
 
 
 *Prioridade 3*
 
+Sistema de pontos nos utilizadores registados
 Configurar o .ENV com os dados (MongoDB/Port)
 
 
@@ -42,9 +40,3 @@ pass: Barbeiro2020!
 --FRONTEND--
 Criar HTML // CSS
 
---History--
-
-Mudado nomes da variaveis no barbaCon
-"" nome do ficheiro JSON
-Alterado Route barbeiro
-Adicionado CRUD do Barbeiro

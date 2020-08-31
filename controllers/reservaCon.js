@@ -25,7 +25,6 @@ const getReserva = (req, res) => {
     idBarbeiro: idBarbeiro,
   };
 
-  console.log(dummyDate);
   //funcação que converte datetime UTC para horas (HH:MM)
   function convertUTCDateTimeToTime(valor) {
     if (typeof valor === 'object') valor = JSON.stringify(valor);
@@ -75,6 +74,9 @@ const addReserva = (req, res) => {
     idService: req.body.tipo_corte,
     datetime: localTime(ConcactDateTime),
     comment: req.body.comentario,
+    clientName: req.body.nome_cliente,
+    telephone: req.body.contato_cliente,
+    email: req.body.email_cliente,
   });
 
   reservaInput.save(function (err, reservaInput) {

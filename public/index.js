@@ -1,7 +1,7 @@
 let date_input = document.getElementById('selectDate');
 let barbeiro_input = document.getElementById('selectBarbeiro');
 var hour_input = document.querySelector('.f_hour');
-date_input.valueAsDate = new Date();
+//date_input.valueAsDate = new Date(); colocar data atual
 
 barbeiro_input.onchange = function () {
   GetReservations();
