@@ -1,21 +1,61 @@
 let date_input = document.getElementById('selectDate');
 let barbeiro_input = document.getElementById('selectBarbeiro');
 var hour_input = document.querySelector('.f_hour');
+
 //date_input.valueAsDate = new Date(); colocar data atual
+//FUNCAO PARA DATA Portugal
+function fdate(timestamp) {
+  const date = new Date(timestamp);
+
+  //yyyy
+  const year = date.getUTCFullYear();
+
+  //mm
+  const month = `0${date.getUTCMonth() + 1}`.slice(-2);
+
+  //dd
+  const day = `0${date.getUTCDate()}`.slice(-2);
+
+  return {
+    day,
+    month,
+    year,
+    iso: `${year}-${month}-${day}`,
+  };
+}
 
 barbeiro_input.onchange = function () {
-  GetReservations();
+  if (!selectDate.value) {
+    alert('Introduza  a data primeiro');
+  } else {
+    GetReservations();
+  }
 };
 
 date_input.onchange = function (event) {
-  GetReservations();
+  fetch('http://localhost:3000/defaulttime')
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      // trata se alguma das promises falhar
+      console.error('Failed retrieving information', err);
+    });
+
+  // GetReservations();
 };
 
 function GetReservations() {
   let selectBarbeiro = barbeiro_input.value;
-  let selectDate = date_input.valueAsDate;
+  //let selectDate = date_input.valueAsDate;
+  let selectDate = date_input.value;
+
   hour_input.options.length = 0;
-  if (selectDate < Date.now()) {
+
+  let NOW = fdate(Date.now());
+
+  if (selectDate < NOW.iso) {
     var option = new Option('Sem horas disponíveis', 0);
     hour_input.appendChild(option);
   } else {

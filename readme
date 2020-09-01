@@ -1,17 +1,16 @@
 **//Passos por fazer //*
 --FRONTEND--
 //Mudar o formato da data do DatePicker (Talvez JQUERY?)
-//Mudar formato MongoDB horas pra Timestamp?
-
+//Mudar formato MongoDB horas pra Timestamp?//Criar CSS notificação quando não se coloca a data (Em vez do console.alert)
 
 --BACKEND--
 
 *Prioridade 1*
+Corrigir carregamento de horas(só pode aparecer horas que sejam >= a hora atual)
 Criar login JWT
 Password com Ecrypt
-Criar Model Utilizador
 Criar relacão reserva <-> Utilizador
-
+Utilizador logado por fazer reservas
 
 *Prioridade 2*
 Login / Registo dos utilizadores

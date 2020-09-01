@@ -11,6 +11,18 @@ const index = async (req, res) => {
   res.render('index', { barbeiros: arrayBarbeiros });
 };
 
+const getHorasDisponiveis = (req, res) => {
+  let arrayHorasDisponiveis = [];
+
+  for (x in dataDisp) {
+    let hour = dataDisp[x].hour;
+
+    hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+    arrayHorasDisponiveis.push(hour);
+  }
+
+  res.status(200).json(arrayHorasDisponiveis);
+};
 const getReserva = (req, res) => {
   // VARIABLES //
   let startDate = req.query.date;
@@ -32,7 +44,6 @@ const getReserva = (req, res) => {
   }
   //Comunicação com MongoDb
   Reserva.find(dummyDate).then((reservas) => {
-    console.log('encontrado' + reservas);
     if (
       typeof reservas != 'undefined' &&
       reservas != null &&
@@ -90,6 +101,7 @@ module.exports = {
   index,
   addReserva,
   getReserva,
+  getHorasDisponiveis,
 };
 
 /*
