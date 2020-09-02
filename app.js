@@ -10,18 +10,16 @@ dotenv.config();
 
 //Mongoose Connection
 const dbURI =
-    'mongodb+srv://barbeiroNoobs:Barbeiro2020!@barbeirosnoobs.nuofn.mongodb.net/BarbeirosDB?retryWrites=true&w=majority';
+  'mongodb+srv://barbeiroNoobs:Barbeiro2020!@barbeirosnoobs.nuofn.mongodb.net/BarbeirosDB?retryWrites=true&w=majority';
 
-mongoose
-    .connect(dbURI, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-    })
-    .then((result) => app.listen(3000))
-    .then(console.log('listening from port 3000'))
-    .catch((err) => console.log(err));
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+//   .then((result) => console.log(result))
+//   .catch((err) => console.log(err));
 
 //MIDLEWARE
 
@@ -37,11 +35,11 @@ app.set('view engine', 'ejs');
 app.use(routes);
 
 //LISTEN
-// app.listen(3000, () => {
-//   console.log(`Server ON Port-3000`);
-// });
+app.listen(5000, function () {
+  console.log('server is running');
+});
 
 //NOT FOUND
 app.use(function (req, res) {
-    res.status(404).render('404');
+  res.status(404).render('404');
 });

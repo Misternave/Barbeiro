@@ -1,7 +1,7 @@
 const Reserva = require('../models/reserva');
 const dataDisp = require('../reservasDisponiveis.json');
 const datasEfect = require('../reservasEfetuadas.json');
-const barbeiros = require('../controllers/Barbacon');
+const barbeiros = require('./barbacon');
 const { localTime } = require('../utils/lib');
 const fs = require('fs');
 
