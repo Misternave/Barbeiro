@@ -4,6 +4,7 @@ const datasEfect = require('../reservasEfetuadas.json');
 const barbeiros = require('./barbacon');
 const { localTime } = require('../utils/lib');
 const fs = require('fs');
+const { start } = require('repl');
 
 const index = async (req, res) => {
   const arrayBarbeiros = await barbeiros.getBarbeiros();
@@ -13,12 +14,15 @@ const index = async (req, res) => {
 
 const getHorasDisponiveis = (req, res) => {
   let arrayHorasDisponiveis = [];
+  const now = new Date();
 
   for (x in dataDisp) {
-    let hour = dataDisp[x].hour;
+    if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+      let hour = dataDisp[x].hour;
 
-    hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-    arrayHorasDisponiveis.push(hour);
+      hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+      arrayHorasDisponiveis.push(hour);
+    }
   }
 
   res.status(200).json(arrayHorasDisponiveis);
@@ -28,7 +32,7 @@ const getReserva = (req, res) => {
   let startDate = req.query.date;
   let idBarbeiro = req.query.idbarbeiro;
   let arrayHorasDisponiveis = [];
-
+  const now = new Date();
   const dummyDate = {
     datetime: {
       $gte: localTime(new Date(new Date(startDate).setHours(00, 00, 00))),
@@ -50,11 +54,13 @@ const getReserva = (req, res) => {
       reservas.length != null &&
       reservas.length > 0
     ) {
+      //Carrega todas as horas disponiveis //
       for (x in dataDisp) {
         let hour = dataDisp[x].hour;
-
-        hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-        arrayHorasDisponiveis.push(hour);
+        if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+          hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+          arrayHorasDisponiveis.push(hour);
+        }
       }
 
       let reservas1 = reservas.map(function (reserva, index) {
@@ -68,8 +74,11 @@ const getReserva = (req, res) => {
       // //Senão existir nenhuma reserva marcada, mostra automaticamente todas as horas disponiveis
       //
     } else {
+      //COMEÇAR POR CORRIGIR DAQUI console.log(startDate) //
       for (x in dataDisp) {
+        // if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
         arrayHorasDisponiveis.push(convertUTCDateTimeToTime(dataDisp[x].hour));
+        // }
       }
     }
     res.status(200).json(arrayHorasDisponiveis);
