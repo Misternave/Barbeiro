@@ -12,11 +12,12 @@ module.exports = (req, res, next) => {
 
   const [scheme, token] = parts;
 
-  if (!/^Bearer$^/i.test(scheme)) return res.status(401).send({ error: 'Token mal formatado' });
+  if (!/^Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Token mal formatado' });
 
-  jwt.verify(token, authConfig.secret, (err, decode) => {
+  jwt.verify(token, authConfig.secret, (err, decoded) => {
     if (err) return res.status(401).send({ error: 'Token invalido' });
 
     req.userId = decoded.id;
+    return next();
   });
 };

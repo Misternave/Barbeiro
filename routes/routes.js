@@ -1,11 +1,15 @@
 const express = require('express');
+const routes = express.Router();
 const reserva = require('../controllers/reservaCon');
 const barbeiro = require('../controllers/barbaCon');
 const utilizador = require('../controllers/utilizadorCon');
 const projectController = require('../controllers/projectController');
 // const hora = require('../controllers/horaCon');
+const authMiddleware = require('../middlewares/auth');
 
-const routes = express.Router();
+//Projectos//
+routes.get('/projects', authMiddleware, projectController.index);
+
 //RESERVA//
 routes.get('/', reserva.index);
 routes.post('/', reserva.addReserva);
@@ -28,8 +32,5 @@ routes.post('/barbeiro', barbeiro.addBarbeiro);
 //UTILIZADOR//
 routes.post('/register', utilizador.register);
 routes.post('/authenticate', utilizador.authenticate);
-
-//Projectos//
-routes.get('/projects', projectController.index);
 
 module.exports = routes;
