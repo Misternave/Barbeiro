@@ -1,5 +1,6 @@
 **//Passos por fazer //*
 --FRONTEND--
+//Adicionar pagina Login e registo do utilizador
 //Mudar o formato da data do DatePicker (Talvez JQUERY?)
 //Mudar formato MongoDB horas pra Timestamp?//Criar CSS notificação quando não se coloca a data (Em vez do console.alert)
 

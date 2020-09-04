@@ -13,7 +13,7 @@ const reservaSchema = new Schema({
   comment: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
-  // idUtilizador: { type: Int32, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'utilizador' },
 });
 
 // Sets the created_at parameter equal to the current time

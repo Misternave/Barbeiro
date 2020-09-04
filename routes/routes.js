@@ -8,7 +8,14 @@ const projectController = require('../controllers/projectController');
 const authMiddleware = require('../middlewares/auth');
 
 //Projectos//
-routes.get('/projects', authMiddleware, projectController.index);
+routes.get('/projects', authMiddleware, projectController.getProject);
+routes.post('/projects', authMiddleware, projectController.postProject);
+
+//UTILIZADOR//
+routes.get('/register', utilizador.showRegister);
+routes.post('/register', utilizador.register);
+routes.get('/authenticate', utilizador.showauthenticate);
+routes.post('/authenticate', utilizador.authenticate);
 
 //RESERVA//
 routes.get('/', reserva.index);
@@ -28,9 +35,5 @@ routes.delete('/:id', barbeiro.deleteBarbeiro);
 //BARBEIRO//
 routes.get('/barbeiro', barbeiro.index);
 routes.post('/barbeiro', barbeiro.addBarbeiro);
-
-//UTILIZADOR//
-routes.post('/register', utilizador.register);
-routes.post('/authenticate', utilizador.authenticate);
 
 module.exports = routes;

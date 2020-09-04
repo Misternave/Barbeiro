@@ -12,21 +12,29 @@ function generateToken(params = {}) {
 }
 //Fim Funções
 
+const showRegister = async (req, res) => {
+  res.render('register');
+};
 const register = async (req, res) => {
   const { email } = req.body;
-
+  console.log('entrou');
   try {
     if (await Utilizador.findOne({ email })) {
       return res.status(400).send({ erro: 'utilizador já existente' });
     }
 
     const utilizador = await Utilizador.create(req.body);
+
     utilizador.password = undefined;
 
     return res.send({ utilizador, token: generateToken({ id: utilizador.id }) });
   } catch (err) {
     return res.status(400).send({ error: 'Registo falhado' });
   }
+};
+
+const showauthenticate = async (req, res) => {
+  res.render('authenticate');
 };
 
 const authenticate = async (req, res) => {
@@ -47,6 +55,8 @@ const authenticate = async (req, res) => {
 };
 
 module.exports = {
+  showRegister,
   register,
+  showauthenticate,
   authenticate,
 };
