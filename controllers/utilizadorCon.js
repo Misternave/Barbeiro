@@ -104,10 +104,40 @@ const forgotPassword = async (req, res) => {
   }
 };
 
+const resetPassword = async (req, res) => {
+  const { email, token, password } = req.body;
+  // try {
+  const user = await Utilizador.findOne({ email }).select(
+    '+passwordResetToken passwordResetExpires'
+  );
+
+  if (!user) return res.status(400).send({ error: 'erro, utilizador não encontrado' });
+
+  if (token !== user.passwordResetToken) res.status(400).send({ error: 'Token invalido' });
+
+  let now = new Date();
+
+  if (now > user.passwordResetExpires)
+    res.status(400).send({ error: 'Token expirado, gere novo sff' });
+
+  user.password = password;
+
+  await user.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log('Reset efetuado ');
+  });
+
+  res.send();
+  // } catch (err) {
+  //   res.status(400).send({ error: 'Token invalido' });
+  // }
+};
+
 module.exports = {
   showRegister,
   register,
   showauthenticate,
   authenticate,
   forgotPassword,
+  resetPassword,
 };

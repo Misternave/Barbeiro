@@ -12,13 +12,15 @@ var transport = nodemailer.createTransport({
     pass,
   },
 });
-console.log('PATH 2' + path.resolve());
-console.log('PATH' + path.resolve() + '/resources/mail/');
+
 transport.use(
   'compile',
   hbs({
-    viewEngine: 'handlebars',
-    viewPath: path.resolve(path.resolve()) + '/resources/mail/',
+    viewEngine: {
+      defaultLayout: undefined,
+      partialsDir: path.resolve('./resources/mail/'),
+    },
+    viewPath: path.resolve('./resources/mail/'),
     extName: '.html',
   })
 );
