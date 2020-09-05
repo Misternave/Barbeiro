@@ -20,6 +20,15 @@ const utilizadorSchema = new Schema({
     required: true,
     select: false,
   },
+  passwordResetToken: {
+    type: String,
+    select: false,
+  },
+  passwordResetExpires: {
+    type: Date,
+    select: false,
+  },
+
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });

@@ -16,6 +16,7 @@ routes.get('/register', utilizador.showRegister);
 routes.post('/register', utilizador.register);
 routes.get('/authenticate', utilizador.showauthenticate);
 routes.post('/authenticate', utilizador.authenticate);
+routes.post('/forgotpassword', utilizador.forgotPassword);
 
 //RESERVA//
 routes.get('/', reserva.index);
