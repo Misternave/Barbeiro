@@ -5,8 +5,10 @@
 //Mudar formato MongoDB horas pra Timestamp?//Criar CSS notificação quando não se coloca a data (Em vez do console.alert)
 
 --BACKEND--
-
+*prioridade 0*
+Corrigir o mesmo dia quando o barbeiro é diferente da reserva CORRIGIR!
 *Prioridade 1*
+Colocar o Remember me no Login
 Corrigir carregamento de horas(só pode aparecer horas que sejam >= a hora atual)
 Refatoring processo de password /Login/Registo (https://www.youtube.com/watch?v=SnoAwLP1a-0)
 Criar relacão reserva <-> Utilizador

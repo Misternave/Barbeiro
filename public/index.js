@@ -53,12 +53,32 @@ function GetReservations() {
   hour_input.options.length = 0;
 
   let NOW = fdate(Date.now());
-  console.log(selectDate);
-  console.log(NOW.iso);
-  if (selectDate < NOW.iso) {
+  console.log('selected-' + selectDate);
+  console.log('NOW' + NOW.iso);
+
+  //dia de hoje
+  if (selectDate === NOW.iso) {
+    fetch(`http://localhost:3000/defaulttime?date=${selectDate}&idbarbeiro=${selectBarbeiro}`)
+      .then((response) => response.json())
+      .then((horas) => {
+        if (horas.length == 0) {
+          var option = new Option('Sem horas disponíveis', 0);
+          hour_input.appendChild(option);
+          return;
+        }
+        for (i = 0; i < horas.length; i++) {
+          var option = new Option(horas[i], horas[i]);
+          hour_input.appendChild(option);
+        }
+      });
+  }
+  //dias anteriores
+  else if (selectDate < NOW.iso) {
     var option = new Option('Sem horas disponíveis', 0);
     hour_input.appendChild(option);
-  } else {
+  }
+  //dias seguintes
+  else if (selectDate > NOW.iso) {
     fetch(`http://localhost:3000/availabletime?date=${selectDate}&idbarbeiro=${selectBarbeiro}`)
       .then((response) => response.json())
       .then((horas) => {
