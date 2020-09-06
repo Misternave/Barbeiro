@@ -14,9 +14,11 @@ routes.post('/projects', authMiddleware, projectController.postProject);
 //UTILIZADOR//
 routes.get('/register', utilizador.showRegister);
 routes.post('/register', utilizador.register);
-routes.get('/authenticate', utilizador.showauthenticate);
+routes.get('/authenticate', utilizador.showAuthenticate);
 routes.post('/authenticate', utilizador.authenticate);
+routes.get('/forgotpassword', utilizador.showForgotPassword);
 routes.post('/forgotpassword', utilizador.forgotPassword);
+routes.get('/resetpassword', utilizador.showResetRassword);
 routes.post('/resetpassword', utilizador.resetPassword);
 
 //RESERVA//

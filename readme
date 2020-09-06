@@ -8,8 +8,7 @@
 
 *Prioridade 1*
 Corrigir carregamento de horas(só pode aparecer horas que sejam >= a hora atual)
-Criar login JWT
-Password com Ecrypt
+Refatoring processo de password /Login/Registo (https://www.youtube.com/watch?v=SnoAwLP1a-0)
 Criar relacão reserva <-> Utilizador
 Utilizador logado por fazer reservas
 

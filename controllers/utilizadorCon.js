@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const mailer = require('../modules/mailer');
 const authConfig = require('../utils/config/auth.json');
+const { token } = require('morgan');
+const { RSA_NO_PADDING } = require('constants');
 
 //Funcões
 function generateToken(params = {}) {
@@ -35,7 +37,7 @@ const register = async (req, res) => {
   }
 };
 
-const showauthenticate = async (req, res) => {
+const showAuthenticate = async (req, res) => {
   res.render('authenticate');
 };
 
@@ -54,6 +56,10 @@ const authenticate = async (req, res) => {
   user.password = undefined;
 
   res.send({ user, token: generateToken({ id: user.id }) });
+};
+
+const showForgotPassword = async (req, res) => {
+  res.render('forgotpassword');
 };
 
 const forgotPassword = async (req, res) => {
@@ -104,8 +110,15 @@ const forgotPassword = async (req, res) => {
   }
 };
 
+const showResetRassword = async (req, res) => {
+  const { token } = req.query;
+  res.render('resetpassword', { token: token });
+};
+
 const resetPassword = async (req, res) => {
-  const { email, token, password } = req.body;
+  const { token } = req.query;
+  console.log('TOKEN-' + token);
+  const { email, password } = req.body;
   // try {
   const user = await Utilizador.findOne({ email }).select(
     '+passwordResetToken passwordResetExpires'
@@ -136,8 +149,10 @@ const resetPassword = async (req, res) => {
 module.exports = {
   showRegister,
   register,
-  showauthenticate,
+  showAuthenticate,
   authenticate,
+  showForgotPassword,
   forgotPassword,
+  showResetRassword,
   resetPassword,
 };
