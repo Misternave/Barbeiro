@@ -26,15 +26,6 @@ const getHorasDisponiveis = (req, res) => {
     idBarbeiro: idBarbeiro,
   };
 
-  // for (x in dataDisp) {
-  //   if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
-  //     let hour = dataDisp[x].hour;
-
-  //     hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-  //     arrayHorasDisponiveis.push(hour);
-  //   }
-  // }
-
   //validação com as reservas existentes//
   //função que converte datetime UTC para horas (HH:MM)
   function convertUTCDateTimeToTime(valor) {
@@ -49,7 +40,6 @@ const getHorasDisponiveis = (req, res) => {
       reservas.length != null &&
       reservas.length > 0
     ) {
-      console.log('ENTROU!!!!');
       //Carrega todas as horas disponiveis //
       for (x in dataDisp) {
         if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
@@ -66,6 +56,16 @@ const getHorasDisponiveis = (req, res) => {
       arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
         return reservas1.indexOf(val) == -1;
       });
+      res.status(200).json(arrayHorasDisponiveis);
+    } else {
+      for (x in dataDisp) {
+        let hour = dataDisp[x].hour;
+        if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+          console.log('ENTROU 2IF!!!!');
+          hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+          arrayHorasDisponiveis.push(hour);
+        }
+      }
       res.status(200).json(arrayHorasDisponiveis);
     }
   });

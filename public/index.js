@@ -33,15 +33,6 @@ barbeiro_input.onchange = function () {
 };
 
 date_input.onchange = function (event) {
-  // fetch('http://localhost:3000/defaulttime')
-  //   .then((response) => response.json())
-  //   .then((result) => {
-  //     //console.log(result);
-  //   })
-  //   .catch((err) => {
-  //     // trata se alguma das promises falhar
-  //     console.error('Failed retrieving information', err);
-  //   });
   GetReservations();
 };
 
@@ -58,9 +49,11 @@ function GetReservations() {
 
   //dia de hoje
   if (selectDate === NOW.iso) {
+    console.log('antes do FETCH');
     fetch(`http://localhost:3000/defaulttime?date=${selectDate}&idbarbeiro=${selectBarbeiro}`)
       .then((response) => response.json())
       .then((horas) => {
+        console.log('entrou' + horas);
         if (horas.length == 0) {
           var option = new Option('Sem horas disponíveis', 0);
           hour_input.appendChild(option);
