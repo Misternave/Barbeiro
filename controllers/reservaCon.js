@@ -5,11 +5,12 @@ const barbeiros = require('./barbacon');
 const { localTime } = require('../utils/lib');
 const fs = require('fs');
 const { start } = require('repl');
+const { check, validationResult } = require('express-validator');
 
 const index = async (req, res) => {
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
-  res.render('index', { barbeiros: arrayBarbeiros });
+  res.render('reservas', { barbeiros: arrayBarbeiros });
 };
 
 const getHorasDisponiveis = (req, res) => {
@@ -33,43 +34,48 @@ const getHorasDisponiveis = (req, res) => {
     return valor.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
   }
   //Comunicação com MongoDb
-  Reserva.find(dummyDate).then((reservas) => {
-    if (
-      typeof reservas != 'undefined' &&
-      reservas != null &&
-      reservas.length != null &&
-      reservas.length > 0
-    ) {
-      //Carrega todas as horas disponiveis //
-      for (x in dataDisp) {
-        if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+  Reserva.find(dummyDate)
+    .then((reservas) => {
+      if (
+        typeof reservas != 'undefined' &&
+        reservas != null &&
+        reservas.length != null &&
+        reservas.length > 0
+      ) {
+        //Carrega todas as horas disponiveis //
+        for (x in dataDisp) {
+          if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+            let hour = dataDisp[x].hour;
+
+            hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+            arrayHorasDisponiveis.push(hour);
+          }
+        }
+        let reservas1 = reservas.map(function (reserva, index) {
+          return convertUTCDateTimeToTime(reserva.datetime);
+        });
+
+        arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
+          return reservas1.indexOf(val) == -1;
+        });
+        res.status(200).json(arrayHorasDisponiveis);
+      } else {
+        for (x in dataDisp) {
           let hour = dataDisp[x].hour;
-
-          hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-          arrayHorasDisponiveis.push(hour);
+          if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+            console.log('ENTROU 2IF!!!!');
+            hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+            arrayHorasDisponiveis.push(hour);
+          }
         }
+        res.status(200).json(arrayHorasDisponiveis);
       }
-      let reservas1 = reservas.map(function (reserva, index) {
-        return convertUTCDateTimeToTime(reserva.datetime);
-      });
-
-      arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
-        return reservas1.indexOf(val) == -1;
-      });
-      res.status(200).json(arrayHorasDisponiveis);
-    } else {
-      for (x in dataDisp) {
-        let hour = dataDisp[x].hour;
-        if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
-          console.log('ENTROU 2IF!!!!');
-          hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-          arrayHorasDisponiveis.push(hour);
-        }
-      }
-      res.status(200).json(arrayHorasDisponiveis);
-    }
-  });
+    })
+    .catch(() => {
+      res.send('Sorry! Algo correu mal.');
+    });
 };
+
 const getReserva = (req, res) => {
   // VARIABLES //
   let startDate = req.query.date;
@@ -90,40 +96,44 @@ const getReserva = (req, res) => {
     return valor.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
   }
   //Comunicação com MongoDb
-  Reserva.find(dummyDate).then((reservas) => {
-    if (
-      typeof reservas != 'undefined' &&
-      reservas != null &&
-      reservas.length != null &&
-      reservas.length > 0
-    ) {
-      //Carrega todas as horas disponiveis //
-      for (x in dataDisp) {
-        let hour = dataDisp[x].hour;
-        if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
-          hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
-          arrayHorasDisponiveis.push(hour);
+  Reserva.find(dummyDate)
+    .then((reservas) => {
+      if (
+        typeof reservas != 'undefined' &&
+        reservas != null &&
+        reservas.length != null &&
+        reservas.length > 0
+      ) {
+        //Carrega todas as horas disponiveis //
+        for (x in dataDisp) {
+          let hour = dataDisp[x].hour;
+          if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+            hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
+            arrayHorasDisponiveis.push(hour);
+          }
+        }
+
+        let reservas1 = reservas.map(function (reserva, index) {
+          return convertUTCDateTimeToTime(reserva.datetime);
+        });
+
+        arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
+          return reservas1.indexOf(val) == -1;
+        });
+        //
+        // //Senão existir nenhuma reserva marcada, mostra automaticamente todas as horas disponiveis
+        //
+      } else {
+        for (x in dataDisp) {
+          arrayHorasDisponiveis.push(convertUTCDateTimeToTime(dataDisp[x].hour));
         }
       }
-
-      let reservas1 = reservas.map(function (reserva, index) {
-        return convertUTCDateTimeToTime(reserva.datetime);
-      });
-
-      arrayHorasDisponiveis = arrayHorasDisponiveis.filter(function (val) {
-        return reservas1.indexOf(val) == -1;
-      });
-      //
-      // //Senão existir nenhuma reserva marcada, mostra automaticamente todas as horas disponiveis
-      //
-    } else {
-      for (x in dataDisp) {
-        arrayHorasDisponiveis.push(convertUTCDateTimeToTime(dataDisp[x].hour));
-      }
-    }
-    res.status(200).json(arrayHorasDisponiveis);
-    //**Fim da Promise**//
-  });
+      res.status(200).json(arrayHorasDisponiveis);
+      //**Fim da Promise**//
+    })
+    .catch(() => {
+      res.send('Sorry! Algo correu mal.');
+    });
 };
 
 const addReserva = (req, res) => {

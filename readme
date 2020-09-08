@@ -6,7 +6,11 @@
 
 --BACKEND--
 *prioridade 0*
-Corrigir o mesmo dia quando o barbeiro é diferente da reserva CORRIGIR!
+-Colocar validação dos dados no FRONTEND
+-Colocar a funcionar o sanitaze / express-validator no backend
+-Colocar a funcionar registo com o Login
+-- Estudar CORDS / Estudar HELMET / Estudar Validate
+
 *Prioridade 1*
 Colocar o Remember me no Login
 Corrigir carregamento de horas(só pode aparecer horas que sejam >= a hora atual)

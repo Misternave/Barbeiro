@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 ///Schema///
 
 const reservaSchema = new Schema({
-  clientName: { type: String },
-  telephone: { type: Number },
-  email: { type: String },
+  clientName: { type: String, trim: true },
+  telephone: { type: Number, trim: true },
+  email: { type: String, trim: true },
   idBarbeiro: { type: mongoose.Schema.Types.ObjectId, ref: 'barbeiro' },
   datetime: { type: Date, required: true },
   idService: { type: Number, required: true },
-  comment: { type: String },
+  comment: { type: String, trim: true },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'utilizador' },

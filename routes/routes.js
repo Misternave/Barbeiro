@@ -31,13 +31,13 @@ routes.get('/defaulttime', reserva.getHorasDisponiveis);
 // routes.get('/hora', hora.index);
 // routes.post('/hora', hora.addHora);
 
-//barbeiro (ID) //
-routes.get('/:id', barbeiro.showBarbeiro);
-routes.put('/:id', barbeiro.editBarbeiro);
-routes.delete('/:id', barbeiro.deleteBarbeiro);
+// //barbeiro (ID) //
+// routes.get('/:id', barbeiro.showBarbeiro);
+// routes.put('/:id', barbeiro.editBarbeiro);
+// routes.delete('/:id', barbeiro.deleteBarbeiro);
 
-//BARBEIRO//
-routes.get('/barbeiro', barbeiro.index);
-routes.post('/barbeiro', barbeiro.addBarbeiro);
+// //BARBEIRO//
+// routes.get('/barbeiro', barbeiro.index);
+// routes.post('/barbeiro', barbeiro.addBarbeiro);
 
 module.exports = routes;
