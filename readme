@@ -6,10 +6,9 @@
 
 --BACKEND--
 *prioridade 0*
--Colocar validação dos dados no FRONTEND
--Colocar a funcionar o sanitaze / express-validator no backend
+-Colocar validação dos dados no FRONTEND ( express-validator) // Sanization -- https://www.youtube.com/watch?v=rBzCvbA0Dls&list=PLillGF-RfqbYRpji8t4SxUkMxfowG4Kqp&index=8
 -Colocar a funcionar registo com o Login
--- Estudar CORDS / Estudar HELMET / Estudar Validate
+-- Estudar CORDS / Estudar HELMET 
 
 *Prioridade 1*
 Colocar o Remember me no Login
