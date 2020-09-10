@@ -5,12 +5,14 @@ const barbeiros = require('./barbacon');
 const { localTime } = require('../utils/lib');
 const fs = require('fs');
 const { start } = require('repl');
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const index = async (req, res) => {
+  req.flash('message', 'Success!!');
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
-  res.render('reservas', { barbeiros: arrayBarbeiros });
+  res.render('index', { barbeiros: arrayBarbeiros });
+  // // res.render('reservas', { barbeiros: arrayBarbeiros });
 };
 
 const getHorasDisponiveis = (req, res) => {
@@ -136,14 +138,20 @@ const getReserva = (req, res) => {
     });
 };
 
-const addReserva = (req, res) => {
+const addReserva = (req, res, next) => {
   let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
+
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   const reservaInput = new Reserva({
     idBarbeiro: req.body.barbeiro,
     idService: req.body.tipo_corte,
     datetime: localTime(ConcactDateTime),
-    comment: req.body.comentario,
+    comment: req.body.comentario_cliente,
     clientName: req.body.nome_cliente,
     telephone: req.body.contato_cliente,
     email: req.body.email_cliente,
@@ -152,7 +160,9 @@ const addReserva = (req, res) => {
   reservaInput.save(function (err, reservaInput) {
     if (err) return console.error(err);
   });
-
+  req.flash('success', 'Registration successfully');
+  res.locals.message = req.flash();
+  next();
   res.redirect('/');
 };
 

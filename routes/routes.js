@@ -5,7 +5,15 @@ const barbeiro = require('../controllers/barbaCon');
 const utilizador = require('../controllers/utilizadorCon');
 const projectController = require('../controllers/projectController');
 // const hora = require('../controllers/horaCon');
+const { body, validationResult } = require('express-validator');
 const authMiddleware = require('../middlewares/auth');
+
+//Flash//
+
+routes.use(function (req, res, next) {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 //Projectos//
 routes.get('/projects', authMiddleware, projectController.getProject);
@@ -23,7 +31,20 @@ routes.post('/resetpassword', utilizador.resetPassword);
 
 //RESERVA//
 routes.get('/', reserva.index);
-routes.post('/', reserva.addReserva);
+routes.post(
+  '/',
+  [
+    // email must be an email
+    body('email_cliente').isEmail().normalizeEmail(),
+    // phonenumber must be at least 9 chars long
+    body('contato_cliente').isLength({ min: 9, max: 9 }),
+    // name must be not empty
+    body('nome_cliente').not().isEmpty().trim().escape(),
+    // comments must be not empty
+    body('comentario_cliente').optional().trim().escape(),
+  ],
+  reserva.addReserva
+);
 routes.get('/availabletime', reserva.getReserva);
 routes.get('/defaulttime', reserva.getHorasDisponiveis);
 
