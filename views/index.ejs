@@ -16,13 +16,14 @@
         <div>
           <div>
 
-            <% if(locals.message){ %>
-              <div class="alert alert-success" role="alert">
-                  <strong>Well done!</strong> <%=message.success%>
-              </div>
-          <% } %>
+<% if(success.length >0) { %>
+<%= success %>
+<% } %>
 
-            
+<% if(errors.length >0) { %>
+  <% for(error of errors) %>
+  <%= error %> <br>
+  <% } %>
             <form method="POST" action="/">
               <div>
                 <div>

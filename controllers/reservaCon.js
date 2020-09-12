@@ -8,10 +8,13 @@ const { start } = require('repl');
 const { body, validationResult } = require('express-validator');
 
 const index = async (req, res) => {
-  req.flash('message', 'Success!!');
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
-  res.render('index', { barbeiros: arrayBarbeiros });
+  res.render('index', {
+    barbeiros: arrayBarbeiros,
+    success: req.flash('success'),
+    errors: req.flash('errors'),
+  });
   // // res.render('reservas', { barbeiros: arrayBarbeiros });
 };
 
@@ -141,10 +144,18 @@ const getReserva = (req, res) => {
 const addReserva = (req, res, next) => {
   let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
 
-  // Finds the validation errors in this request and wraps them in an object with handy functions
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  // // Finds the validation errors in this request and wraps them in an object with handy functions
+  //OLD- const errors1 = validationResult(req);
+  //OLD- const errors = errors1.array();
+  //CORRIGIR COM O LINK DO SCOTH.IO!
+
+  if (errors) {
+    req.flash(
+      'errors',
+      errors.map((err) => err.msg)
+    );
+    return res.redirect('/');
+    // return res.status(400).json({ errors: errors.array() });
   }
 
   const reservaInput = new Reserva({
@@ -159,11 +170,12 @@ const addReserva = (req, res, next) => {
 
   reservaInput.save(function (err, reservaInput) {
     if (err) return console.error(err);
+
+    req.flash('success', 'Reserva confirmada');
+
+    // res.locals.message = req.flash();
+    res.redirect('/');
   });
-  req.flash('success', 'Registration successfully');
-  res.locals.message = req.flash();
-  next();
-  res.redirect('/');
 };
 
 module.exports = {

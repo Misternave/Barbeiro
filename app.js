@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
@@ -12,7 +13,7 @@ const ejs = require('ejs');
 const { db } = require('./models/reserva');
 const port = 5000;
 const app = express();
-dotenv.config();
+// dotenv.config(); //Load .env file (not ready yet)
 
 // Helment setup (Default)
 app.use(helmet());
@@ -60,25 +61,25 @@ app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 //Logs on the server
 app.use(morgan('dev'));
 
-// geeksForGeeks
+// register view engine
+app.set('view engine', 'ejs');
+
+//Flash
+app.use(cookieParser());
 app.use(
   session({
-    secret: 'secret_passcode',
+    secret: 'secret123',
     saveUninitialized: true,
     resave: true,
   })
 );
 
-//Flash messages
 app.use(flash());
-
-// register view engine
-app.set('view engine', 'ejs');
 
 //ROUTES
 app.use(routes);
 
-//NOT FOUND
+//NOT FOUND webpage (show default 404)
 app.use(function (req, res) {
   res.status(404).render('404');
 });

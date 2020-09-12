@@ -8,13 +8,6 @@ const projectController = require('../controllers/projectController');
 const { body, validationResult } = require('express-validator');
 const authMiddleware = require('../middlewares/auth');
 
-//Flash//
-
-routes.use(function (req, res, next) {
-  res.locals.flashMessages = req.flash();
-  next();
-});
-
 //Projectos//
 routes.get('/projects', authMiddleware, projectController.getProject);
 routes.post('/projects', authMiddleware, projectController.postProject);
