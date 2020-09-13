@@ -30,9 +30,13 @@ routes.post(
     // email must be an email
     body('email_cliente').isEmail().normalizeEmail(),
     // phonenumber must be at least 9 chars long
-    body('contato_cliente').isLength({ min: 9, max: 9 }),
+    body('contato_cliente')
+      .isLength({ min: 9, max: 9 })
+      .withMessage('Numero tem de ter 9 digitos')
+      .matches(/\d/)
+      .withMessage('Tem de ser numero'),
     // name must be not empty
-    body('nome_cliente').not().isEmpty().trim().escape(),
+    body('nome_cliente').not().isEmpty().trim().escape().withMessage('Nome tem de ser preenchido'),
     // comments must be not empty
     body('comentario_cliente').optional().trim().escape(),
   ],

@@ -144,19 +144,21 @@ const getReserva = (req, res) => {
 const addReserva = (req, res, next) => {
   let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
 
-  // // Finds the validation errors in this request and wraps them in an object with handy functions
-  //OLD- const errors1 = validationResult(req);
-  //OLD- const errors = errors1.array();
-  //CORRIGIR COM O LINK DO SCOTH.IO!
-
-  if (errors) {
-    req.flash(
-      'errors',
-      errors.map((err) => err.msg)
-    );
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    req.flash('errors', errors.array());
     return res.redirect('/');
-    // return res.status(400).json({ errors: errors.array() });
   }
+
+  // if (errors) {
+  //   req.flash(
+  //     'errors',
+  //     errors.map((err) => err.msg)
+  //   );
+
+  // return res.status(400).json({ errors: errors.array() });
 
   const reservaInput = new Reserva({
     idBarbeiro: req.body.barbeiro,

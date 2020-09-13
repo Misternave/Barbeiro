@@ -8,29 +8,9 @@
 *prioridade 0*
 -Colocar validação dos dados no FRONTEND ( express-validator) // Sanization -- https://www.youtube.com/watch?v=rBzCvbA0Dls&list=PLillGF-RfqbYRpji8t4SxUkMxfowG4Kqp&index=8
 -Flash messages
+--https://www.geeksforgeeks.org/form-required-attribute-with-a-custom-validation-message-in-html5/
+--Ler validação do Bootstrap (cliente e Servidor)
 
-Listing 22.3. Adding flash messages to the create action in usersController.js
-
-create: (req, res, next) => {
-  let userParams = getUserParams(req.body);
-  User.create(userParams)
-    .then(user => {
-      req.flash("success", `${user.fullName}'s account created
- successfully!`);
-      res.locals.redirect = "/users";
-      res.locals.user = user;
-      next();
-    })
-    .catch(error => {
-      console.log(`Error saving user: ${error.message}`);
-      res.locals.redirect = "/users/new";
-      req.flash(
-        "error",
-        `Failed to create user account because:  ${error.message}.`
-      );
-      next();
-    });
-},
 -Colocar a funcionar registo com o Login
 
 

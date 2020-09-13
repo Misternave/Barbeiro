@@ -16,14 +16,11 @@
         <div>
           <div>
 
-<% if(success.length >0) { %>
-<%= success %>
-<% } %>
-
-<% if(errors.length >0) { %>
-  <% for(error of errors) %>
-  <%= error %> <br>
-  <% } %>
+            <% if(errors.length >0) { %>
+              <% errors.forEach((element, index, array) => { %>
+              <%= element.msg %> <br>
+              <% }) %>            
+              <% } %>
             <form method="POST" action="/">
               <div>
                 <div>
@@ -76,7 +73,7 @@
                     
                   <label>Dados Pessoais</label>
                   <input type="text" name="nome_cliente" placeholder="Primeiro e Ultimo Nome" required/>
-                  <input type="tel" name="contato_cliente"  placeholder="Numero Telefone" min="12" max="120" required />
+                  <input type="tel" name="contato_cliente"  placeholder="Numero Telefone"  />
                   <input type="email" name="email_cliente" placeholder="Email Telefone" required />
                   <a href="register">Registo</a>
                   <a href="authenticate">Login</a>
