@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!-- Custom styles for this template -->
+    <link href="custom.css" rel="stylesheet" />
 
-    <title>Document</title>
+    <title>Reservas</title>
   </head>
+
   <body>
+    <!-- Header -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">BarbeiroNoob</a>
@@ -39,9 +43,39 @@
       </nav>
     </header>
 
-    <% if ( expressFlash.length > 0 ) { %>
-    <div class="alert alert-success" role="alert"><%= expressFlash %></div>
-    <% } %>
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container"></div>
+    </div>
+    <!-- Container-->
+    <div class="container">
+      <!-- Info Panel-->
+      <div class="row justify-content-center">
+        <div class="col-10 info-panel">
+          <div class="row">
+            <div class="col-lg">
+              <h4>Nova Marcação</h4>
+              <p>Escolha um serviço</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action active">
+                Cras justo odio
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+              <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+              <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+             
+                >Vestibulum at eros</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
     <script language="javascript" src="/jquery.min.js"></script>
     <script language="javascript" src="/js/bootstrap.min.js"></script>
   </body>

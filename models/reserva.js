@@ -4,9 +4,14 @@ const Schema = mongoose.Schema;
 ///Schema///
 
 const reservaSchema = new Schema({
-  clientName: { type: String, trim: true },
-  telephone: { type: Number, trim: true },
-  email: { type: String, trim: true },
+  clientName: { type: String, trim: true, required: [true, 'O cliente tem de tem nome'] },
+  telephone: { type: Number, trim: true, required: [true, 'O cliente tem de tem contato'] },
+  email: {
+    type: String,
+    trim: true,
+    required: [true, 'O cliente tem de tem email'],
+    unique: true,
+  },
   idBarbeiro: { type: mongoose.Schema.Types.ObjectId, ref: 'barbeiro' },
   datetime: { type: Date, required: true },
   idService: { type: Number, required: true },

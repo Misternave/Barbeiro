@@ -10,7 +10,7 @@ const { body, validationResult } = require('express-validator');
 const index = async (req, res) => {
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
-  res.render('index', {
+  res.render('reservas', {
     barbeiros: arrayBarbeiros,
     success: req.flash('success'),
     errors: req.flash('errors'),
@@ -147,8 +147,8 @@ const addReserva = (req, res, next) => {
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors.array());
     req.flash('errors', errors.array());
+    // return res.status(422).jsonp(errors.array());
     return res.redirect('/');
   }
 

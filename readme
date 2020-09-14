@@ -1,27 +1,22 @@
 **//Passos por fazer //*
 --FRONTEND--
-//Adicionar pagina Login e registo do utilizador
-//Mudar o formato da data do DatePicker (Talvez JQUERY?)
-//Mudar formato MongoDB horas pra Timestamp?//Criar CSS notificação quando não se coloca a data (Em vez do console.alert)
+//Adicionar pagina Login e registo do utilizador (Em fase de testes)
+//Transitar layout pra boostrap com as validações 
 
 --BACKEND--
 *prioridade 0*
--Colocar validação dos dados no FRONTEND ( express-validator) // Sanization -- https://www.youtube.com/watch?v=rBzCvbA0Dls&list=PLillGF-RfqbYRpji8t4SxUkMxfowG4Kqp&index=8
--Flash messages
---https://www.geeksforgeeks.org/form-required-attribute-with-a-custom-validation-message-in-html5/
---Ler validação do Bootstrap (cliente e Servidor)
-
+-Colocar validação dos dados no BackEnd ( express-validator) // Sanization -- 
+-Colocar validação dos dados no FrontEnd Bootstrap 
 -Colocar a funcionar registo com o Login
 
 
 *Prioridade 1*
-Colocar o Remember me no Login
-Corrigir carregamento de horas(só pode aparecer horas que sejam >= a hora atual)
 Refatoring processo de password /Login/Registo (https://www.youtube.com/watch?v=SnoAwLP1a-0)
 Criar relacão reserva <-> Utilizador
-Utilizador logado por fazer reservas
+Utilizador logado pode fazer reservas
 
 *Prioridade 2*
+Colocar o Remember me no Login
 Estudar CORDS / Estudar HELMET 
 Aparecer as reservas efetuadas no login do utilizador
 
