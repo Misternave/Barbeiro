@@ -43,7 +43,7 @@ const showAuthenticate = async (req, res) => {
 
 const authenticate = async (req, res) => {
   const { email, password } = req.body;
-
+  //console.log(req.body);
   const user = await Utilizador.findOne({ email }).select('+password');
 
   if (!user) {

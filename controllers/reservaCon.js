@@ -31,7 +31,7 @@ const getHorasDisponiveis = (req, res) => {
     },
     idBarbeiro: idBarbeiro,
   };
-
+  console.log(dummyDate);
   //validação com as reservas existentes//
   //função que converte datetime UTC para horas (HH:MM)
   function convertUTCDateTimeToTime(valor) {
@@ -112,7 +112,7 @@ const getReserva = (req, res) => {
         //Carrega todas as horas disponiveis //
         for (x in dataDisp) {
           let hour = dataDisp[x].hour;
-          if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
+          if (dataDisp[x].hour >= `1970-01-01T00:00:00.000Z`) {
             hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
             arrayHorasDisponiveis.push(hour);
           }
