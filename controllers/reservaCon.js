@@ -12,8 +12,8 @@ const index = async (req, res) => {
 
   res.render('reservas', {
     barbeiros: arrayBarbeiros,
-    success: req.flash('success'),
-    errors: req.flash('errors'),
+    // success: req.flash('success'),
+    // errors: req.flash('errors'),
   });
   // // res.render('reservas', { barbeiros: arrayBarbeiros });
 };

@@ -12,9 +12,11 @@
 
         <label for="name"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="name" id="name" required />
+        <div class="name error"></div>
 
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" name="email" id="email" required />
+        <div class="email error"></div>
 
         <label for="password"><b>Password</b></label>
         <input
@@ -34,8 +36,7 @@
           required
         />
         <hr />
-
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+        <div class="password error"></div>
         <button type="submit" class="registerbtn">Register</button>
       </div>
 

@@ -7,13 +7,49 @@ const authConfig = require('../utils/config/auth.json');
 const { token } = require('morgan');
 const { RSA_NO_PADDING } = require('constants');
 
-//Funcões
+// Funcões //
+
+// Generate Tokens
+const maxAge = 3 * 24 * 60 * 60;
 function generateToken(params = {}) {
   return jwt.sign(params, authConfig.secret, {
-    expiresIn: 86400,
+    expiresIn: maxAge,
   });
 }
-//Fim Funções
+
+//Handle Errors
+const handleErrors = (err) => {
+  console.log(err.message, err.code);
+  let errors = { email: '', password: '' };
+
+  //duplicate error code
+
+  if (err.code === 11000) {
+    errors.email = 'that email is already registered';
+    return errors;
+  }
+
+  //incorrect email
+  if (err.message === 'incorrect email') {
+    errors.email = 'that email is not registered';
+  }
+
+  //incorrect password
+  if (err.message === 'incorrect password') {
+    errors.password = 'that incorrect password';
+  }
+
+  //validation errors
+  if (err.message.includes('user validation failed')) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+
+  return errors;
+};
+
+// Fim Funções //
 
 const showRegister = async (req, res) => {
   res.render('register');
@@ -43,19 +79,36 @@ const showAuthenticate = async (req, res) => {
 
 const authenticate = async (req, res) => {
   const { email, password } = req.body;
-  //console.log(req.body);
+
   const user = await Utilizador.findOne({ email }).select('+password');
 
+  //teste errors
+  let errors = { email: '', password: '' };
+
+  //fim teste errors
+
   if (!user) {
-    return res.status(404).send({ result: 'Utilizador não encontrado' });
+    errors.email = 'Email não registado';
+    //return res.status(404).send({ result: 'Utilizador não encontrado' });
+    return res.status(404).json({ errors });
   }
 
-  if (!(await bcrypt.compare(password, user.password)))
-    return res.status(400).send({ error: 'Password Invalida' });
+  if (!(await bcrypt.compare(password, user.password))) {
+    errors.password = 'Password Invalida';
+    return res.status(400).json({ errors });
+  }
 
-  user.password = undefined;
+  // user.password = undefined;
+  // res.send({ user, token: generateToken({ id: user.id }) });
+  console.log({ user, token: generateToken({ id: user.id }) });
+  const token = generateToken({ id: user.id });
+  res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+  res.status(200).json({ user: user._id });
+};
 
-  res.send({ user, token: generateToken({ id: user.id }) });
+const showLogOut = async (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
 };
 
 const showForgotPassword = async (req, res) => {
@@ -151,6 +204,7 @@ module.exports = {
   register,
   showAuthenticate,
   authenticate,
+  showLogOut,
   showForgotPassword,
   forgotPassword,
   showResetRassword,

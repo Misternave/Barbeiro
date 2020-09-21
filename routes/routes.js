@@ -17,6 +17,7 @@ routes.get('/register', utilizador.showRegister);
 routes.post('/register', utilizador.register);
 routes.get('/authenticate', utilizador.showAuthenticate);
 routes.post('/authenticate', utilizador.authenticate);
+routes.get('/logout', utilizador.showLogOut);
 routes.get('/forgotpassword', utilizador.showForgotPassword);
 routes.post('/forgotpassword', utilizador.forgotPassword);
 routes.get('/resetpassword', utilizador.showResetRassword);
