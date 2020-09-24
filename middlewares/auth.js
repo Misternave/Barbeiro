@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const authConfig = require('../utils/config/auth.json');
 const Utilizador = require('../models/utilizador');
 
-module.exports = (req, res, next) => {
+const requireAuth = (req, res, next) => {
   // const authToken = req.headers.authorization;
 
   let authToken = req.cookies.jwt;
@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
   if (!authToken) {
     res.locals.user = null;
-    return res.status(401).send({ error: 'Não existe token' });
+    //return res.status(401).send({ error: 'Não existe token' });
   }
 
   const parts = authToken.split(' ');
@@ -48,3 +48,53 @@ module.exports = (req, res, next) => {
     return next();
   });
 };
+
+//check current user
+
+const checkUser = (req, res, next) => {
+  let authToken = req.cookies.jwt;
+
+  if (!authToken) {
+    res.locals.user = null;
+    next();
+    // return res.status(401).send({ error: 'Não existe token' });
+  } else if (authToken) {
+    console.log('entrou');
+    authToken = 'Bearer ' + authToken;
+    const parts = authToken.split(' ');
+
+    if (!parts.length === 2) {
+      res.locals.user = null;
+      return res.status(401).send({ error: 'erro no Token' });
+    }
+
+    const [scheme, token] = parts;
+
+    if (!/^Bearer$/i.test(scheme)) {
+      res.locals.user = null;
+      return res.status(401).send({ error: 'Token mal formatado' });
+    }
+
+    jwt.verify(token, authConfig.secret, (err, decoded) => {
+      console.log('entrou token');
+      if (err) {
+        res.locals.user = null;
+        return res.status(401).send({ error: 'Token invalido' });
+      } else {
+        req.userId = decoded.id;
+
+        Utilizador.findById(req.userId, function (err, user) {
+          if (err) {
+            res.locals.user = null;
+          } else {
+            res.locals.user = user;
+            console.log(user);
+          }
+        });
+      }
+    });
+    return next();
+  }
+};
+
+module.exports = { requireAuth, checkUser };

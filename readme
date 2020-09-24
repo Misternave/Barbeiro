@@ -1,19 +1,17 @@
 **//Passos por fazer //*
 --FRONTEND--
-//Adicionar pagina Login e registo do utilizador (Em fase de testes)
-//Transitar layout pra boostrap com as validações 
+//Adicionar pagina esquecimento de password sem ser só com postman
+// layout com boostrap com as validações (pagina login e registo)
+//Layout pagina reserva e com a logica a funcionar
+//Layout pagina register e Login com boostrap
 
 --BACKEND--
 *prioridade 0*
--Colocar validação dos dados no BackEnd ( express-validator) // Sanization -- 
--Colocar validação dos dados no FrontEnd Bootstrap 
--Colocar a funcionar registo com o Login
-
-
-*Prioridade 1*
-Refatoring processo de password /Login/Registo (https://www.youtube.com/watch?v=SnoAwLP1a-0)
 Criar relacão reserva <-> Utilizador
 Utilizador logado pode fazer reservas
+
+*Prioridade 1*
+---Vazio-
 
 *Prioridade 2*
 Colocar o Remember me no Login

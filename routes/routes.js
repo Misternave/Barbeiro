@@ -6,11 +6,11 @@ const utilizador = require('../controllers/utilizadorCon');
 const projectController = require('../controllers/projectController');
 // const hora = require('../controllers/horaCon');
 const { body, validationResult } = require('express-validator');
-const authMiddleware = require('../middlewares/auth');
+const { requireAuth, checkUser } = require('../middlewares/auth');
 
 //Projectos//
-routes.get('/projects', authMiddleware, projectController.getProject);
-routes.post('/projects', authMiddleware, projectController.postProject);
+routes.get('/projects', requireAuth, projectController.getProject);
+routes.post('/projects', requireAuth, projectController.postProject);
 
 //UTILIZADOR//
 routes.get('/register', utilizador.showRegister);
@@ -24,7 +24,7 @@ routes.get('/resetpassword', utilizador.showResetRassword);
 routes.post('/resetpassword', utilizador.resetPassword);
 
 //RESERVA//
-routes.get('/', reserva.index);
+routes.get('/', checkUser, reserva.index);
 routes.post(
   '/',
   [
