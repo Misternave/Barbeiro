@@ -9,7 +9,7 @@ form.addEventListener('submit', async (e) => {
   //get values
   const email = form.email.value;
   const password = form.password.value;
-  const passwordrepeat = form.passwordrepeat;
+  const passwordrepeat = form.passwordrepeat.value;
   const name = form.name.value;
 
   // reset errors

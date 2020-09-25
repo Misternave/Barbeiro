@@ -1,14 +1,16 @@
 **//Passos por fazer //*
 --FRONTEND--
+//Layout pagina reserva e com a logica a funcionar
 //Adicionar pagina esquecimento de password sem ser só com postman
 // layout com boostrap com as validações (pagina login e registo)
-//Layout pagina reserva e com a logica a funcionar
 //Layout pagina register e Login com boostrap
 
 --BACKEND--
 *prioridade 0*
 Criar relacão reserva <-> Utilizador
 Utilizador logado pode fazer reservas
+Colocar messages de validação no layout de reservas em vez de flashmessages
+Algo parecido com a validacao da autenticação
 
 *Prioridade 1*
 ---Vazio-
@@ -17,7 +19,7 @@ Utilizador logado pode fazer reservas
 Colocar o Remember me no Login
 Estudar CORDS / Estudar HELMET 
 Aparecer as reservas efetuadas no login do utilizador
-
+Inserir Model Serviços com ligação reserva
 
 *Prioridade 3*
 

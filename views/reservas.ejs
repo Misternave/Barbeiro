@@ -1,96 +1,102 @@
 <%- include('partials/header'); -%>
-    <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container"></div>
-    </div>
-    <!-- Container-->
-    <!-- <div class="container"> -->
-    <!-- Info Panel-->
-    <!-- <div class="row justify-content-center">
-        <div class="col-6 info-panel">
-          <div class="row justify-content-center">
-            <div class="col-lg text-center">
-              <h4>Nova Marcação</h4>
-              <p>Escolha um serviço</p>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-10">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Cabelo e Barba</a>
-                <a href="#" class="list-group-item list-group-item-action">Cabelo</a>
-                <a href="#" class="list-group-item list-group-item-action">Barba</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="btn-reserve">
-      <button id="myBtn">Open Modal</button>
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="modal-barbeiro">
-          <h3>Reservas</h3>
-          <form>
-            <div class="form-group">
-              <label for="exampleFormControlSelectBarbeiro">Barbeiro</label>
-          <select class="form-control" id="FormControlSelectBarbeiro" name="barbeiro">
-            <option value="default">Escolha um Barbeiro</option>
-            <option value="barbeiro1">barbeiro1</option>
-            <option value="barbeiro2">barbeiro2</option>
-            <option value="barbeiro3">barbeiro3</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelectService">Serviço</label>
-    <select class="form-control" id="FormControlSelectService">
-            <option value="default">Escolha um servico</option>
-            <option value="cabelo">corte cabelo</option>
-            <option value="barba">corte barba</option>
-            <option value="cabeloBarba">corte cabelo + barba</option>
-          </select>
+<!-- Jumbotron -->
+<div class="jumbotron jumbotron-fluid">
+   <div class="container"></div>
+</div>
+<!-- Container-->
+<!-- <div class="container"> -->
+<!-- Info Panel-->
+<!-- <div class="row justify-content-center">
+   <div class="col-6 info-panel">
+     <div class="row justify-content-center">
+       <div class="col-lg text-center">
+         <h4>Nova Marcação</h4>
+         <p>Escolha um serviço</p>
        </div>
-
-
-       <div class="form-group">
-        <label for="exampleFormControlSelectDate">Data</label>
-        
-          <input  class="form-control" type="date" placeholder="MÊS / DIA / ANO" id="selectDate">
-      
-      </div>
-
-     
-
-      <div class="form-group">
-        <label for="exampleFormControlSelectHour">Hora</label>
-        
-            
-            <select  class="form-control"  name="hour"></select>
-          
      </div>
+     <div class="row justify-content-center">
+       <div class="col-10">
+         <div class="list-group">
+           <a href="#" class="list-group-item list-group-item-action">Cabelo e Barba</a>
+           <a href="#" class="list-group-item list-group-item-action">Cabelo</a>
+           <a href="#" class="list-group-item list-group-item-action">Barba</a>
+         </div>
+       </div>
+     </div>
+   </div>
+   </div>
+   </div> -->
+<div class="btn-reserve">
+   <button id="myBtn">Open Modal</button>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+   <span class="close">&times;</span>
+   <div class="modal-barbeiro">
+      <h3>Reservas</h3>
+      <form>
+         <div class="form-group">
+            <label for="exampleFormControlSelectDate">Data</label>
+            <input id="selectDate" class="form-control" type="date" name="data" placeholder="MÊS / DIA / ANO" required="" >
+         </div>
+         <div class="form-group">
+            <label for="exampleFormControlSelectBarbeiro">Barbeiro</label>
+            <select class="form-control" id="selectBarbeiro" name="barbeiro">
+               <option value="default">Escolha um Barbeiro</option>
+               <% if(barbeiros.length > 0) { %> <% barbeiros.forEach(barbeiro => { %>
+               <option value="<%= barbeiro._id %>"><%=barbeiro.name %></option>
+               <%})%> <%} else { %>
+               <option>Nothing to display</option>
+               <% } %>
+            </select>
+         </div>
+         <div class="form-group">
+            <label for="exampleFormControlSelectHour">Hora</label>
+            <select  class="form-control" id="selectHour"  name="hour"></select>
+         </div>
+         <div class="form-group">
+            <label for="exampleFormControlSelectService">Serviço</label>
+            <select class="form-control" id="FormControlSelectService">
+               <option value="default">Escolha um Serviço</option>
+               <option value="1">Cabelo + Barba - 18€</option>
+               <option value="2">Cabelo - 13€</option>
+               <option value="3">Barba - 8.5€</option>
+               <option value="4">Cabelo Criança - 10€</option>
+            </select>
+         </div>
+         <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputName">Nome</label>
+              <input type="text" class="form-control" id="nome_cliente">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" id="email_cliente">
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputPhone">Contato</label>
+              <input type="text" class="form-control" id="contato_cliente">
+            </div>
 
-     <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Observações</span>
-      </div>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
-    </div>
-    <br>
-    <button type="button" class="btn btn-primary">Reservar</button>
-        </form>
-      </div>
-    </div>
 
-    <!-- FOOTER -->
-    <script language="javascript" src="/jquery.min.js"></script>
-    <script language="javascript" src="/js/bootstrap.min.js"></script>
-    <script language="javascript" src="modal.js"></script>
-  </body>
+            <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text">Observações</span>
+               </div>
+               <textarea name="comentario_cliente" class="form-control" aria-label="Escreve aqui um nota para esta marcação" placeholder="Escreve aqui uma nota para esta marcação"></textarea>
+             </div>
+     </div>
+         <button type="button" class="btn btn-primary">Reservar</button>
+      </form>
+   </div>
+</div>
+<!-- FOOTER -->
+<script language="javascript" src="/jquery.min.js"></script>
+<script language="javascript" src="/js/bootstrap.min.js"></script>
+<script language="javascript" src="modal.js"></script>
+<script src="index.js"></script>
+</body>
 </html>

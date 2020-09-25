@@ -87,3 +87,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/*Space observations and reserve button*/
+
+.input-group {
+  margin-bottom: 1rem;
+}
