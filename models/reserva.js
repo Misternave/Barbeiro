@@ -10,7 +10,6 @@ const reservaSchema = new Schema({
     type: String,
     trim: true,
     required: [true, 'O cliente tem de tem email'],
-    unique: true,
   },
   idBarbeiro: { type: mongoose.Schema.Types.ObjectId, ref: 'barbeiro' },
   datetime: { type: Date, required: true },

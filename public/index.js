@@ -1,6 +1,10 @@
 let date_input = document.getElementById('selectDate');
 let barbeiro_input = document.getElementById('selectBarbeiro');
 var hour_input = document.getElementById('selectHour');
+const form = document.querySelector('form');
+const emailError = document.querySelector('.email_cliente.error');
+const nomeError = document.querySelector('.nome_cliente.error');
+const contatoError = document.querySelector('.contato_cliente.error');
 
 //date_input.valueAsDate = new Date(); colocar data atual
 //FUNCAO PARA DATA Portugal
@@ -87,3 +91,49 @@ function GetReservations() {
       });
   }
 }
+
+//Validações dos dados introduzidos
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  //get values from form
+  const barbeiro = form.barbeiro.value;
+  const tipoCorte = form.tipo_corte.value;
+  const comentario = form.comentario_cliente.value;
+  const email = form.email_cliente.value;
+  const nome = form.nome_cliente.value;
+  const contato = form.contato_cliente.value;
+
+  // reset errors
+  emailError.textContent = '';
+  nomeError.textContent = '';
+  contatoError.textContent = '';
+
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      body: JSON.stringify({
+        barbeiro: barbeiro,
+        tipo_corte: tipoCorte,
+        email_cliente: email,
+        contato_cliente: contato,
+        nome_cliente: nome,
+        comentario_cliente: comentario,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.errors) {
+      emailError.textContent = data.errors.email;
+      nomeError.textContent = data.errors.nome;
+      contatoError.textContent = data.errors.contato;
+    }
+
+    if (data.reserva) {
+      location.assign('/');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});

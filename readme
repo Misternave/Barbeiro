@@ -1,22 +1,29 @@
 **//Passos por fazer //*
+
+-- Acabar de ver  os videos do Async NetNinja
 --FRONTEND--
-//Layout pagina reserva e com a logica a funcionar
-//Adicionar pagina esquecimento de password sem ser só com postman
-// layout com boostrap com as validações (pagina login e registo)
-//Layout pagina register e Login com boostrap
+
+*prioridade 0*
+Layout com boostrap com as validações (pagina login , registo e reservas) 
+
+*Prioridade 1*
+Layout pagina register e Login com boostrap
+
+*Prioridade 2*
+Adicionar pagina esquecimento de password sem ser só com postman
+Colocar o Remember me no Login
+
 
 --BACKEND--
 *prioridade 0*
-Criar relacão reserva <-> Utilizador
-Utilizador logado pode fazer reservas
 Colocar messages de validação no layout de reservas em vez de flashmessages
-Algo parecido com a validacao da autenticação
 
 *Prioridade 1*
----Vazio-
+Criar relacão reserva <-> Utilizador
+Utilizador logado pode fazer reservas
+
 
 *Prioridade 2*
-Colocar o Remember me no Login
 Estudar CORDS / Estudar HELMET 
 Aparecer as reservas efetuadas no login do utilizador
 Inserir Model Serviços com ligação reserva
@@ -33,10 +40,7 @@ Configurar o .ENV com os dados (MongoDB/Port)
 
 
 
-email e password
 
-email: barbeironoobs@gmail.com
-pass: Barbeiro2020!
 
 
 ---CRIAR UM DISCORD----

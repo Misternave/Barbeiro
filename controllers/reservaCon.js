@@ -7,6 +7,30 @@ const fs = require('fs');
 const { start } = require('repl');
 const { body, validationResult } = require('express-validator');
 
+//Handle Errors
+const handleErrors = (err) => {
+  console.log(err.errors);
+
+  let errors = { nome: '', email: '', contato: '' };
+
+  err.errors.forEach((element) => {
+    //incorrect phone Number
+    if (element.param === 'contato_cliente') {
+      errors.contato = element.msg;
+    }
+    //incorrect Name
+    if (element.param === 'nome_cliente') {
+      errors.nome = element.msg;
+    }
+    //incorrect Email
+    if (element.param === 'email_cliente') {
+      errors.email = element.msg;
+    }
+  });
+
+  return errors;
+};
+
 const index = async (req, res) => {
   const arrayBarbeiros = await barbeiros.getBarbeiros();
 
@@ -147,9 +171,11 @@ const addReserva = (req, res, next) => {
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    req.flash('errors', errors.array());
+    // req.flash('errors', errors.array());
     // return res.status(422).jsonp(errors.array());
-    return res.redirect('/');
+    const errors2 = handleErrors(errors);
+    return res.status(400).json({ errors: errors2 });
+    // return res.redirect('/');
   }
 
   // if (errors) {
@@ -169,14 +195,15 @@ const addReserva = (req, res, next) => {
     telephone: req.body.contato_cliente,
     email: req.body.email_cliente,
   });
-
+  console.log(reservaInput);
   reservaInput.save(function (err, reservaInput) {
     if (err) return console.error(err);
-
-    req.flash('success', 'Reserva confirmada');
+    console.log('reserva confirmada');
+    res.status(200).json({ reserva: reservaInput });
+    // req.flash('success', 'Reserva confirmada');
 
     // res.locals.message = req.flash();
-    res.redirect('/');
+    //res.redirect('/');
   });
 };
 
@@ -186,67 +213,3 @@ module.exports = {
   getReserva,
   getHorasDisponiveis,
 };
-
-/*
-BACKUP reservas quando usavamos ficheiros
-    let dateInput = {
-        date: '10-08-2020',
-        idBarbeiro: "5f346a69c4205d1c60c410c6",
-    };
-
-
-    let arrayHorasDisponiveis = [];
-    let existemReservas = false;
-    // END VARIABLES //
-
-    //FUNCTIONS//
-    function carregaArrayHoras() {
-        for (x in dataDisp) {
-            arrayHorasDisponiveis.push(dataDisp[x].hour);
-        }
-    }
-   
-   
-    function validaSeExistemReservas(datasEfect) {
-        for (i in datasEfect) {
-            console.log('entrou no 1 FOR - JSON - Datas efetuadas');
-            if (
-                datasEfect[i].date == dateInput.date &&
-                datasEfect[i].idBarbeiro == dateInput.idBarbeiro
-            ) {
-                console.log('entrou no IF');
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function mostrarHorasDisponiveis(dataDisp, datasEfect) {
-        existemReservas = validaSeExistemReservas(datasEfect);
-        carregaArrayHoras();
-        if (existemReservas === true) {
-            for (i in datasEfect) {
-                if (
-                    datasEfect[i].date === dateInput.date &&
-                    datasEfect[i].idBarbeiro == dateInput.idBarbeiro
-                ) {
-                    for (x in dataDisp) {
-                        if (datasEfect[i].hour === dataDisp[x].hour) {
-                            console.log('MATCH' + datasEfect[i].hour + ' ' + dataDisp[x].hour);
-                            arrayHorasDisponiveis.splice(x, 1);
-                        }
-                    }
-                }
-            }
-        } else {
-            for (i in dataDisp) {
-                arrayHorasDisponiveis.push(dataDisp[i].hour);
-            }
-        }
-    }
-
-    //END FUNCTIONS//
-    mostrarHorasDisponiveis(dataDisp, datasEfect);
-    res.status(200).json('reserva efetuada');
-
-*/
