@@ -28,14 +28,6 @@ function fdate(timestamp) {
   };
 }
 
-barbeiro_input.onchange = function () {
-  if (!selectDate.value) {
-    alert('Introduza  a data primeiro');
-  } else {
-    GetReservations();
-  }
-};
-
 date_input.onchange = function (event) {
   GetReservations();
 };

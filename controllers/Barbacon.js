@@ -6,17 +6,17 @@ const Reserva = require('../models/reserva');
 const index = async (req, res) => {
   const arrayBarbeiros = await getBarbeiros();
 
-  //Barbeiro.find()
-  //.sort({ createdAt: -1 }) //sort allows to change the order by the timestamp
-  //.then((result) => {
+  Barbeiro.find()
+    .sort({ createdAt: -1 }) //sort allows to change the order by the timestamp
+    .then((result) => {
+      arrayBarbeiros.push(result[0].name);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-  //   arrayBarbeiros.push(result[0].name);
-  //})
-  //.catch((err) => {
-  //    console.log(err);
-  //});
-
-  res.render('index', { barbeiros: arrayBarbeiros });
+  // res.render('index', { barbeiros: arrayBarbeiros });
+  res.send(arrayBarbeiros);
 };
 
 async function getBarbeiros() {

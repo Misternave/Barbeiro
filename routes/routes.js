@@ -55,8 +55,8 @@ routes.get('/defaulttime', reserva.getHorasDisponiveis);
 // routes.put('/:id', barbeiro.editBarbeiro);
 // routes.delete('/:id', barbeiro.deleteBarbeiro);
 
-// //BARBEIRO//
-// routes.get('/barbeiro', barbeiro.index);
+//BARBEIRO//
+routes.get('/barbeiro', barbeiro.index);
 // routes.post('/barbeiro', barbeiro.addBarbeiro);
 
 module.exports = routes;

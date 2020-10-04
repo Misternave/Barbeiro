@@ -1,60 +1,62 @@
-// // Get the modal
-// var modal = document.getElementById('myModal');
+//BACKUP codigo SweetAlert2
+// */
+// const urlBase = 'http://localhost:3000/';
 
-// // Get the button that opens the modal
-// var btn = document.getElementById('myBtn');
+// (async () => {
+//   let txtBarbeiros = ` <select class="swal2-input" id="selectBarbeiro" name="barbeiro">
+//   <option value="default">Escolha um Barbeiro</option>`;
 
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName('close')[0];
-
-// // When the user clicks on the button, open the modal
-// btn.onclick = function () {
-//   modal.style.display = 'block';
-// };
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function () {
-//   modal.style.display = 'none';
-// };
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = 'none';
+//   const response = await fetch(`${urlBase}/barbeiro`);
+//   const barbeiros = await response.json();
+//   let i = 1;
+//   for (const barbeiro of barbeiros) {
+//     txtBarbeiros += `
+//     <option value="${barbeiro._id}">${barbeiro.name} </option>
+//     `;
+//     i++;
 //   }
-// };
+//   txtBarbeiros += '</select>';
 
-var btn = document.getElementById('myBtn');
+//   var btnReserve = document.querySelector('.btn-outline-dark');
 
-btn.addEventListener('click', function () {
-  Swal.fire({
-    title: 'Reservas',
-    html: `
-    
-      <input id="selectDate" class="swal2-input" type="date" name="data" placeholder="MÊS / DIA / ANO">
-      <select class="swal2-input" id="FormControlSelectService" name="tipo_corte" required>
-      <option value="default">Escolha um Serviço</option>
-      <option value="1">Cabelo + Barba - 18€</option>
-      <option value="2">Cabelo - 13€</option>
-      <option value="3">Barba - 8.5€</option>
-      <option value="4">Cabelo Criança - 10€</option>
-   </select>
-   <label for="inputName">Nome</label>
-   <input type="text" class="swal2-input" name="nome_cliente"> 
-   <label for="inputEmail">Email</label>
-   <input type="email" class="swal2-input" name="email_cliente">
-   <label for="inputPhone">Contato</label>
-  <input type="text" class="swal2-input" name="contato_cliente">
-   `,
-
-    showCancelButton: true,
-    confirmButtonText: 'Inscrever',
-    cancelButtonText: 'Cancelar',
-    preConfirm: () => {
-      return [
-        document.getElementById('swal-input1').value,
-        document.getElementById('swal-input2').value,
-      ];
-    },
-  });
-});
+//   btnReserve.addEventListener('click', function () {
+//     Swal.fire({
+//       title: 'Reservas',
+//       html: `
+//       <input id="selectDate" class="swal2-input" type="date" name="data" placeholder = "MÊS / DIA / ANO">
+//       <select class="swal2-input" id="selectHour" name="hour" placeholder="hora"><option value="default">Hora</option></select>
+//       ${txtBarbeiros}
+//       <select class="swal2-input" id="FormControlSelectService" name="tipo_corte" required>
+//       <option value="default">Escolha um Serviço</option>
+//       <option value="1">Cabelo + Barba - 18€</option>
+//       <option value="2">Cabelo - 13€</option>
+//       <option value="3">Barba - 8.5€</option>
+//       <option value="4">Cabelo Criança - 10€</option>
+//    </select>
+//    <input type="text" class="swal2-input" name="nome_cliente" placeholder="Nome">
+//    <input type="email" class="swal2-input" name="email_cliente" placeholder="Email">
+//    <input type="text" class="swal2-input" name="contato_cliente" placeholder="Contato">
+//    `,
+//       showCancelButton: true,
+//       confirmButtonText: 'Confirmar',
+//       cancelButtonText: 'Cancelar',
+//       showLoaderOnConfirm: true,
+//       preConfirm: () => {
+//         const name = document.getElementById('swal-input1').value;
+//         const email = document.getElementById('swal-input2').value;
+//         return fetch(`${urlBase}/conferences/1/participants/${email}`, {
+//           method: 'GET',
+//         })
+//           .then((response) => {
+//             if (!response.ok) {
+//               throw new Error(response.statusText);
+//             }
+//             return response.json();
+//           })
+//           .catch((error) => {
+//             swal.showValidationError(`Request failed: ${error}`);
+//           });
+//       },
+//     });
+//   });
+// })();
