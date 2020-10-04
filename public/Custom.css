@@ -1,4 +1,27 @@
 /* Jumbotron */
+body {
+  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+p {
+  line-height: 1.75;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+section {
+  padding: 20px 0;
+}
+section h2.section-heading {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
 
 .jumbotron {
   background-image: url('assets/barberbanner.jpg');
@@ -92,4 +115,39 @@
 
 .input-group {
   margin-bottom: 1rem;
+}
+
+/****************** SERVICES **********************/
+/*
+.team-member {
+  margin-bottom: 50px;
+}
+*/
+.service {
+  /*
+    margin-bottom: 25px;
+    margin-bottom: 50px;
+*/
+
+  text-align: center;
+}
+.service img {
+  opacity: 1;
+  width: 70%;
+  height: 70%;
+  border: 7px solid #fff;
+}
+
+.service h4 {
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.service p {
+  margin-top: 0;
+}
+
+.service img:hover {
+  opacity: 0.5;
 }

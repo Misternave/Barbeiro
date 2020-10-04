@@ -4,10 +4,12 @@
 --FRONTEND--
 
 *prioridade 0*
+Migrar codigo para SweetAlert2 na pagina das reservas
 Layout com boostrap com as validações (pagina login , registo e reservas) 
 
 *Prioridade 1*
 Layout pagina register e Login com boostrap
+Ao abrir a pagina abrir imagem a 100VH
 
 *Prioridade 2*
 Adicionar pagina esquecimento de password sem ser só com postman
@@ -16,7 +18,7 @@ Colocar o Remember me no Login
 
 --BACKEND--
 *prioridade 0*
-Colocar messages de validação no layout de reservas em vez de flashmessages
+
 
 *Prioridade 1*
 Criar relacão reserva <-> Utilizador
@@ -24,7 +26,6 @@ Utilizador logado pode fazer reservas
 
 
 *Prioridade 2*
-Estudar CORDS / Estudar HELMET 
 Aparecer as reservas efetuadas no login do utilizador
 Inserir Model Serviços com ligação reserva
 
@@ -37,16 +38,3 @@ Configurar o .ENV com os dados (MongoDB/Port)
 ->Boostrap;
 ->Postman;
 ->SinglePage vanilla JS
-
-
-
-
-
-
----CRIAR UM DISCORD----
-
-
-
---FRONTEND--
-Criar HTML // CSS
-

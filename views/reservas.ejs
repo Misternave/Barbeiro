@@ -26,6 +26,46 @@
    </div>
    </div>
    </div> -->
+<!-- ######################### SERVIÇOS ########################## -->
+
+
+<section id="services">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Marcações</h2>
+         </div>
+      </div>
+      <div class="row" id="renderServices">
+         <div class="col-sm-4">
+            <div class="service">
+               <img class="mx-auto rounded-circle" src="assets/beard.jpg" alt="barba">
+               <h4>Barba</h4>
+               <p class="text-muted">25 euros</p>
+               <a href="#" class="btn btn-outline-dark">Marque Agora</a>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="service">
+               <img class="mx-auto rounded-circle" src="assets/hair.jpg" alt="Cabelo">
+               <h4>Cabelo</h4>
+               <p class="text-muted">25 euros</p>
+               <a href="#" class="btn btn-outline-dark">Marque Agora</a>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="service">
+               <img class="mx-auto rounded-circle" src="assets/shaveHaircut.jpg" alt="Barba e Cabelo">
+               <h4>Barba e Cabelo</h4>
+               <p class="text-muted">45 euros</p>
+               <a href="#" class="btn btn-outline-dark">Marque Agora</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+
 <div class="btn-reserve">
    <button id="myBtn">Open Modal</button>
 </div>
@@ -68,6 +108,7 @@
                </select>
             </div>
             <div class="form-row">
+               <% if(!user) { %>
                <div class="form-group col-md-6">
                   <label for="inputName">Nome</label>
                   <input type="text" class="form-control" name="nome_cliente">
@@ -75,10 +116,13 @@
                </div>
                <div class="form-group col-md-4">
                   <label for="inputEmail">Email</label>
+
                   <input type="email" class="form-control" name="email_cliente">
                   <div class="email_cliente error"></div>
                   </select>
                </div>
+               <% } %>
+
                <div class="form-group col-md-2">
                   <label for="inputPhone">Contato</label>
                   <input type="text" class="form-control" name="contato_cliente">
@@ -101,6 +145,7 @@
    <!-- FOOTER -->
    <script language="javascript" src="/jquery.min.js"></script>
    <script language="javascript" src="/js/bootstrap.min.js"></script>
+   <script language="javascript" src="/sweetalert2.all.min.js"></script>
    <script language="javascript" src="modal.js"></script>
    <script language="javascript" src="index.js"></script>
    </body>
