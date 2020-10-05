@@ -32,6 +32,12 @@ date_input.onchange = function (event) {
   GetReservations();
 };
 
+barbeiro_input.onchange = function (event) {
+  if (date_input.value !== '' || date_input.value !== undefined) {
+    GetReservations();
+  }
+};
+
 function GetReservations() {
   let selectBarbeiro = barbeiro_input.value;
   //let selectDate = date_input.valueAsDate;
@@ -120,6 +126,37 @@ form.addEventListener('submit', async (e) => {
       emailError.textContent = data.errors.email;
       nomeError.textContent = data.errors.nome;
       contatoError.textContent = data.errors.contato;
+
+      //Bootstrap validation//
+      //Reset
+      let tempErrorsEmailInput = document.getElementsByClassName('email_cliente error');
+      let tempErrorsEmail = document.getElementsByName('email_cliente');
+      let tempErrorsNomeInput = document.getElementsByClassName('nome_cliente error');
+      let tempErrorsNome = document.getElementsByName('nome_cliente');
+      let tempErrorsContatoInput = document.getElementsByClassName('contato_cliente error');
+      let tempErrorsContato = document.getElementsByName('contato_cliente');
+      tempErrorsEmailInput[0].classList.remove('invalid-feedback');
+      tempErrorsEmail[0].classList.remove('is-invalid');
+      tempErrorsNomeInput[0].classList.remove('invalid-feedback');
+      tempErrorsNome[0].classList.remove('is-invalid');
+      tempErrorsContatoInput[0].classList.remove('invalid-feedback');
+      tempErrorsContato[0].classList.remove('is-invalid');
+
+      if (data.errors.email != '') {
+        tempErrorsEmailInput[0].classList.add('invalid-feedback');
+        tempErrorsEmail[0].classList.add('is-invalid');
+      }
+
+      if (data.errors.nome != '') {
+        tempErrorsNomeInput[0].classList.add('invalid-feedback');
+        tempErrorsNome[0].classList.add('is-invalid');
+      }
+
+      if (data.errors.contato != '') {
+        tempErrorsContatoInput[0].classList.add('invalid-feedback');
+        tempErrorsContato[0].classList.add('is-invalid');
+      }
+      //End Bootstrap validation//
     }
 
     if (data.reserva) {

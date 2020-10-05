@@ -37,7 +37,16 @@ routes.post(
       .isInt()
       .withMessage('Contato:Tem de ser numero'),
     // name must be not empty
-    body('nome_cliente').not().isEmpty().trim().escape().withMessage('Nome tem de ser preenchido'),
+    body('nome_cliente')
+      .not()
+      .isEmpty()
+      .trim()
+      .escape()
+      .withMessage('Nome tem de ser preenchido')
+      .isLength({ min: 3 })
+      .withMessage('Nome: Tem de ter 3 caracteres no minimo.')
+      .matches(/^[A-Za-z\s]+$/)
+      .withMessage('Nome: Tem de ser alfabetico'),
     // comments must be not empty
     body('comentario_cliente').optional().trim().escape(),
   ],

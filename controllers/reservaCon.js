@@ -171,20 +171,9 @@ const addReserva = (req, res, next) => {
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    // req.flash('errors', errors.array());
-    // return res.status(422).jsonp(errors.array());
     const errors2 = handleErrors(errors);
     return res.status(400).json({ errors: errors2 });
-    // return res.redirect('/');
   }
-
-  // if (errors) {
-  //   req.flash(
-  //     'errors',
-  //     errors.map((err) => err.msg)
-  //   );
-
-  // return res.status(400).json({ errors: errors.array() });
 
   const reservaInput = new Reserva({
     idBarbeiro: req.body.barbeiro,
@@ -200,10 +189,6 @@ const addReserva = (req, res, next) => {
     if (err) return console.error(err);
     console.log('reserva confirmada');
     res.status(200).json({ reserva: reservaInput });
-    // req.flash('success', 'Reserva confirmada');
-
-    // res.locals.message = req.flash();
-    //res.redirect('/');
   });
 };
 

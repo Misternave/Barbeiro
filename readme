@@ -1,41 +1,47 @@
 **//Passos por fazer //*
-
+**For future study**
+->Ux Design
+->Boostrap;
+->Postman;
+->React
+--Ver video "SinglePage vanilla JS" - https://www.youtube.com/watch?v=6BozpmSjk-Y
 -- Acabar de ver  os videos do Async NetNinja
+--Ver o video "App de Agendamento para Barbeiros em React Native para iniciantes" https://www.youtube.com/watch?v=kk_pGWBOkc4
+
+
+**//Fim Passos por fazer//**
+
+
 
 --FRONTEND--
 
 *prioridade 0*
-Migrar codigo para SweetAlert2 na pagina das reservas
+Testar Validações e funcionalidades do registo da reserva
 Layout com boostrap com as validações (pagina login , registo e reservas) 
 
 *Prioridade 1*
 Layout pagina register e Login com boostrap
-Ao abrir a pagina abrir imagem a 100VH
+Apresenta na pagina (Footer e Google maps)
 
 *Prioridade 2*
+Ao abrir a pagina Header com imagem a 100VH
 Adicionar pagina esquecimento de password sem ser só com postman
 Colocar o Remember me no Login
 
 
 --BACKEND--
 *prioridade 0*
-
+Criar relacão reserva <-> Utilizador quando o utilizador está logado
 
 *Prioridade 1*
-Criar relacão reserva <-> Utilizador
-Utilizador logado pode fazer reservas
-
 
 *Prioridade 2*
 Aparecer as reservas efetuadas no login do utilizador
-Inserir Model Serviços com ligação reserva
+Inserir Model Serviços 
 
 *Prioridade 3*
 
 Sistema de pontos nos utilizadores registados
 Configurar o .ENV com os dados (MongoDB/Port)
+Deploy to heroku
 
-**For future study**
-->Boostrap;
-->Postman;
-->SinglePage vanilla JS
