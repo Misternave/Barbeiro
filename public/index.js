@@ -29,7 +29,9 @@ function fdate(timestamp) {
 }
 
 date_input.onchange = function (event) {
-  GetReservations();
+  if (date_input.value !== '' || date_input.value !== undefined) {
+    GetReservations();
+  }
 };
 
 barbeiro_input.onchange = function (event) {

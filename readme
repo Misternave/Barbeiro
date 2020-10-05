@@ -16,7 +16,7 @@
 --FRONTEND--
 
 *prioridade 0*
-Testar Validações e funcionalidades do registo da reserva
+Refatoring Validações com bootstrap Modal Reservas 
 Layout com boostrap com as validações (pagina login , registo e reservas) 
 
 *Prioridade 1*

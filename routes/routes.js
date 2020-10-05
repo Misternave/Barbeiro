@@ -15,7 +15,7 @@ routes.post('/projects', requireAuth, projectController.postProject);
 //UTILIZADOR//
 routes.get('/register', utilizador.showRegister);
 routes.post('/register', utilizador.register);
-routes.get('/authenticate', utilizador.showAuthenticate);
+routes.get('/authenticate', checkUser, utilizador.showAuthenticate);
 routes.post('/authenticate', utilizador.authenticate);
 routes.get('/logout', utilizador.showLogOut);
 routes.get('/forgotpassword', utilizador.showForgotPassword);
