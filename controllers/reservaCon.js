@@ -1,6 +1,6 @@
 const Reserva = require('../models/reserva');
 const dataDisp = require('../reservasDisponiveis.json');
-const datasEfect = require('../reservasEfetuadas.json');
+//const datasEfect = require('../reservasEfetuadas.json');
 const barbeiros = require('./barbacon');
 const { localTime } = require('../utils/lib');
 const fs = require('fs');
@@ -92,7 +92,6 @@ const getHorasDisponiveis = (req, res) => {
         for (x in dataDisp) {
           let hour = dataDisp[x].hour;
           if (dataDisp[x].hour >= `1970-01-01T${now.getHours()}:${now.getMinutes()}:00.000Z`) {
-            console.log('ENTROU 2IF!!!!');
             hour = hour.replace(/^[^:]*([0-2]\d:[0-5]\d).*$/, '$1');
             arrayHorasDisponiveis.push(hour);
           }

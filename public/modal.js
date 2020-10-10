@@ -60,3 +60,14 @@
 //     });
 //   });
 // })();
+$(function () {
+  $(".navbar a,footer a[href='#mypage']").on('click', function (event) {
+    if (this.hash !== '') {
+      event.preventDefault();
+      var hash = this.hash;
+
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
+      return false;
+    }
+  });
+});
