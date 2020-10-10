@@ -1,192 +1,184 @@
+/****************** Reset and Global **********************/
+
 * {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
+	height: 100%;
 }
+
 body {
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-p {
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 1.15rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-section h2.section-heading {
-  font-size: 40px;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
+
+/****************** INDEX-PAGE **********************/
+
+
 /* Jumbotron */
+
 .jumbotron {
-  background-image: url('assets/barberbanner.jpg');
-  background-size: cover;
-  height: 350px;
-  text-align: center;
-  position: relative;
+	background-image: url('assets/barberbanner.jpg');
+	background-size: cover;
+	height: 350px;
+	text-align: center;
+	position: relative;
 }
+
 .jumbotron .container {
-  z-index: 1;
-  position: relative;
+	z-index: 1;
+	position: relative;
 }
 
 .jumbotron::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 80%;
-  /*background-color:white */
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  position: absolute;
-  bottom: 0;
+	content: '';
+	display: block;
+	width: 100%;
+	height: 80%;
+	/*background-color:white */
+	background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	position: absolute;
+	bottom: 0;
 }
 
 /****************** SERVICES **********************/
-.service {
-  text-align: center;
-}
+
 .service img {
-  opacity: 0.75;
-  width: 70%;
-  height: 70%;
-  border: 7px solid #fff;
+	opacity: 0.75;
+	width: 50%;
+	height: 50%;
+	border: 7px solid #fff;
 }
 
 .service h4 {
-  margin-top: 25px;
-  margin-bottom: 0;
-  text-transform: none;
-}
-
-.service p {
-  margin-top: 0;
+	/* margin-top: 25px; */
+	/* margin-bottom: 0; */
+	text-transform: none;
 }
 
 .service img:hover {
-  opacity: 1;
+	opacity: 1;
 }
 
 #renderServices {
-  padding-bottom: 2em;
+	/* padding-bottom: 2em; */
 }
 
 /****************** ABOUT **********************/
 
-/****************** LOGIN-PAGE **********************/
-div.well {
-  height: 250px;
-}
 
-.Absolute-Center {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-  width: 50%;
-  height: 50%;
-  min-width: 200px;
-  max-width: 400px;
-  padding: 40px;
-}
-
-#logo-container {
-  margin: auto;
-  margin: 7% auto;
-  /* width: 700px; */
-  height: 350px;
-  background-size: cover;
-  background-image: url('assets/logotipo.png');
-}
 
 /****************** Paralax **********************/
 
-
-
-.pimg3 {
-  position: relative;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.pimg {
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
-.pimg3 {
-  background-image: url('assets/image1.jpeg');
-  min-height: 400px;
+.pimg {
+	background-image: url('assets/image1.jpeg');
+	min-height: 400px;
 }
+
 .section {
-  text-align: center;
-  padding: 1em 0.5em;
-  letter-spacing: 0.02em;
-}
-.section-dark {
-  background-color: #282e34;
-  color: #ddd;
+	letter-spacing: 0.02em;
+	text-align: center;
+	padding: 1em 0.5em;
 }
 
-.section-dark p {
+.section-dark {
+	background-color: #282e34;
+  color: #ddd;
+  font-size: 2rem;
   font-weight: 300;
-  font-size: 2.5em;
-  letter-spacing: normal;
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
 .section-light {
-  background: rgba(223, 164, 80, 0.5);
+	background: rgba(223, 164, 80, 0.5);
 }
+
 .section-light p {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
+
 .ptext {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #000;
-  font-size: 27px;
-  letter-spacing: 8px;
-  text-transform: uppercase;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	color: #000;
+	font-size: 1.5rem;
+	letter-spacing: 8px;
+	text-transform: uppercase;
 }
 
 .ptext .border {
-  background-color: #111;
-  color: #fff;
-  padding: 20px;
+	background-color: #111;
+	color: #fff;
+	padding: 1.2rem;
 }
 
 .ptext .border.trans {
-  background-color: transparent;
+	background-color: transparent;
 }
 
-footer{
-  background-color: #282e34;
-  color: #ddd;
-  padding-bottom: 0.5em;
-}
-footer a{
-  color: #f5f5f5;
+/****************** Footer **********************/
+
+footer {
+	background-color: #282e34;
+	color: #ddd;
+	padding-bottom: 0.5em;
 }
 
-footer a:hover{
-  color: #777;
-  text-decoration: none;
+footer a {
+	color: #f5f5f5;
+}
+
+footer a:hover {
+	color: #777;
+	text-decoration: none;
+}
+
+
+/****************** LOGIN-PAGE **********************/
+
+
+/****************** Form Login **********************/
+
+div.well {
+	height: 250px;
+}
+
+.Absolute-Center {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+	width: 50%;
+	height: 50%;
+	min-width: 200px;
+	max-width: 400px;
+	padding: 40px;
+}
+
+#logo-container {
+	margin: auto;
+	margin: 7% auto;
+	/* width: 700px; */
+	height: 350px;
+	background-size: cover;
+	background-image: url('assets/logotipo.png');
 }
