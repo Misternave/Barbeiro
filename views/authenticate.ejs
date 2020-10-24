@@ -32,39 +32,29 @@
 
 <%- include('partials/header'); -%>
 
-<div class="container">
-  <div class="row">
-    <div class="Absolute-Center is-Responsive">
-      <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <form action="" id="loginForm">
-
-          <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-          <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><i class="far fa-envelope"></i></div>
-            </div>
-            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
-          </div>
-
-          <label class="sr-only" for="inlineFormInputGroupUsername2">Password</label>
-          <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><i class="fas fa-lock"></i></div>
-            </div>
-            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Password">
-          </div>
-
-          <div class="form-group">
-            <!-- <button type="button" class="btn btn-def btn-block">Login</button> -->
-            <button type="button" class="btn btn-def btn-secondary btn-lg btn-block">Large button</button>
-          </div>
-          <div class="form-group text-center">
-            <a href="#">Forgot Password</a>
-          </div>
-        </form>
+<section class="section-signin h-100 w-100 text-center">
+  <div class="container">
+    <form class="form-signin">
+      <img class="mb-4" src="assets/logotipo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Iniciar Sessão</h1>
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
+      <div class="email error"></div>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" class="form-control" placeholder="Password" name="password" required>
+      <div class="password error"></div>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Lembrar
+        </label>
+        <span class="psw"><a href="/forgotpassword" onclick="Fxchkbox"> Forgot password?</a></span>
       </div>
-    </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <p class="mt-5 mb-3 text-muted">&copy; BarbeiroNoob - 2020</p>
+    </form>
   </div>
-</div>
-<%- include('partials/footer'); -%>
+</section>
+<script language="javascript" src="authenticate.js"></script>
+</body>
+
+</html>

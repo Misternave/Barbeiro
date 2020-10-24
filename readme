@@ -15,14 +15,18 @@
 
 --FRONTEND--
 
-*prioridade 0*
-Refatoring Validações com bootstrap Modal Reservas 
-Layout com boostrap com as validações (pagina login , registo e reservas) 
-paralax effect pagina principal https://www.youtube.com/watch?v=BfEQ1qgYsts    https://www.youtube.com/watch?v=JttTcnidSdQ
+*Prioridade 0*
+Layout pagina register
+Corrigir High e Weight pagina Login
+Apresenta na pagina principal Google maps
+Corrigir parte logOut e Welcome navBar
+Corrigir user quando esta com o login feito - "user is not defined"
+Corrigir Menu separador selecionado - está sempre Home em qualquer pagina
 
 *Prioridade 1*
-Layout pagina register e Login com boostrap
-Apresenta na pagina (Footer e Google maps)
+Refatoring Validações com bootstrap Modal Reservas 
+Layout com boostrap com as validações (pagina login , registo e reservas) 
+
 
 *Prioridade 2*
 Ao abrir a pagina Header com imagem a 100VH
