@@ -8,6 +8,8 @@ const projectController = require('../controllers/projectController');
 const { body, validationResult } = require('express-validator');
 const { requireAuth, checkUser } = require('../middlewares/auth');
 
+//All//
+routes.get('*', checkUser);
 //Projectos//
 routes.get('/projects', requireAuth, projectController.getProject);
 routes.post('/projects', requireAuth, projectController.postProject);
@@ -15,7 +17,7 @@ routes.post('/projects', requireAuth, projectController.postProject);
 //UTILIZADOR//
 routes.get('/register', utilizador.showRegister);
 routes.post('/register', utilizador.register);
-routes.get('/authenticate', checkUser, utilizador.showAuthenticate);
+routes.get('/authenticate', utilizador.showAuthenticate);
 routes.post('/authenticate', utilizador.authenticate);
 routes.get('/logout', utilizador.showLogOut);
 routes.get('/forgotpassword', utilizador.showForgotPassword);
@@ -24,7 +26,7 @@ routes.get('/resetpassword', utilizador.showResetRassword);
 routes.post('/resetpassword', utilizador.resetPassword);
 
 //RESERVA//
-routes.get('/', checkUser, reserva.index);
+routes.get('/', reserva.index);
 routes.post(
   '/',
   [
@@ -55,17 +57,7 @@ routes.post(
 routes.get('/availabletime', reserva.getReserva);
 routes.get('/defaulttime', reserva.getHorasDisponiveis);
 
-//HORA//
-// routes.get('/hora', hora.index);
-// routes.post('/hora', hora.addHora);
-
-// //barbeiro (ID) //
-// routes.get('/:id', barbeiro.showBarbeiro);
-// routes.put('/:id', barbeiro.editBarbeiro);
-// routes.delete('/:id', barbeiro.deleteBarbeiro);
-
 //BARBEIRO//
 routes.get('/barbeiro', barbeiro.index);
-// routes.post('/barbeiro', barbeiro.addBarbeiro);
 
 module.exports = routes;

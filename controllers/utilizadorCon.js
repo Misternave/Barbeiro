@@ -71,9 +71,6 @@ const register = async (req, res) => {
     }
 
     if (password != passwordrepeat) {
-      console.log(password);
-      console.log(passwordrepeat);
-
       errors.password = 'Password não coincidem';
       return res.status(400).json({ errors });
     }

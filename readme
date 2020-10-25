@@ -16,27 +16,28 @@
 --FRONTEND--
 
 *Prioridade 0*
-Layout pagina register
-Corrigir High e Weight pagina Login
-Apresenta na pagina principal Google maps
-Corrigir parte logOut e Welcome navBar
 Corrigir user quando esta com o login feito - "user is not defined"
+Corrigir High e Weight pagina Login
+Corrigir parte logOut e Welcome navBar
 Corrigir Menu separador selecionado - está sempre Home em qualquer pagina
 
-*Prioridade 1*
-Refatoring Validações com bootstrap Modal Reservas 
-Layout com boostrap com as validações (pagina login , registo e reservas) 
 
+*Prioridade 1*
+
+Adicionar pagina esquecimento de password sem ser só com postman
 
 *Prioridade 2*
 Ao abrir a pagina Header com imagem a 100VH
-Adicionar pagina esquecimento de password sem ser só com postman
+Refatoring Validações com bootstrap Modal Reservas 
 Colocar o Remember me no Login
+Apresenta na pagina principal Google maps
 
 
 --BACKEND--
 *prioridade 0*
+Corrigir user quando esta com o login feito - "user is not defined"
 Criar relacão reserva <-> Utilizador quando o utilizador está logado
+Colocar validação 6 digitos minimos na password quando se faz o registo
 
 *Prioridade 1*
 

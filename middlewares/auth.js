@@ -75,25 +75,19 @@ const checkUser = (req, res, next) => {
       return res.status(401).send({ error: 'Token mal formatado' });
     }
 
-    jwt.verify(token, authConfig.secret, (err, decoded) => {
-      console.log('entrou token');
+    jwt.verify(token, authConfig.secret, async (err, decoded) => {
       if (err) {
+        console.log(err.message);
         res.locals.user = null;
         return res.status(401).send({ error: 'Token invalido' });
+        // next();
       } else {
-        req.userId = decoded.id;
-
-        Utilizador.findById(req.userId, function (err, user) {
-          if (err) {
-            res.locals.user = null;
-          } else {
-            res.locals.user = user;
-            console.log(user);
-          }
-        });
+        let user = await Utilizador.findById(decoded.id);
+        res.locals.user = user;
+        console.log('USER:' + user);
+        next();
       }
     });
-    return next();
   }
 };
 

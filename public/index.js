@@ -1,6 +1,6 @@
 let date_input = document.getElementById('selectDate');
 let barbeiro_input = document.getElementById('selectBarbeiro');
-var hour_input = document.getElementById('selectHour');
+var hour_input = document.getElementById('selectHora');
 const form = document.querySelector('form');
 const emailError = document.querySelector('.email_cliente.error');
 const nomeError = document.querySelector('.nome_cliente.error');
@@ -98,6 +98,8 @@ form.addEventListener('submit', async (e) => {
 
   //get values from form
   const barbeiro = form.barbeiro.value;
+  const data = form.data.value;
+  const hora = form.hora.value;
   const tipoCorte = form.tipo_corte.value;
   const comentario = form.comentario_cliente.value;
   const email = form.email_cliente.value;
@@ -114,6 +116,8 @@ form.addEventListener('submit', async (e) => {
       method: 'POST',
       body: JSON.stringify({
         barbeiro: barbeiro,
+        data: data,
+        hora: hora,
         tipo_corte: tipoCorte,
         email_cliente: email,
         contato_cliente: contato,
@@ -122,12 +126,12 @@ form.addEventListener('submit', async (e) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
-    const data = await res.json();
-    console.log(data);
-    if (data.errors) {
-      emailError.textContent = data.errors.email;
-      nomeError.textContent = data.errors.nome;
-      contatoError.textContent = data.errors.contato;
+    const response = await res.json();
+    console.log(response);
+    if (response.errors) {
+      emailError.textContent = response.errors.email;
+      nomeError.textContent = response.errors.nome;
+      contatoError.textContent = response.errors.contato;
 
       //Bootstrap validation//
       //Reset
@@ -144,25 +148,25 @@ form.addEventListener('submit', async (e) => {
       tempErrorsContatoInput[0].classList.remove('invalid-feedback');
       tempErrorsContato[0].classList.remove('is-invalid');
 
-      if (data.errors.email != '') {
+      if (response.errors.email != '') {
         tempErrorsEmailInput[0].classList.add('invalid-feedback');
         tempErrorsEmail[0].classList.add('is-invalid');
       }
 
-      if (data.errors.nome != '') {
+      if (response.errors.nome != '') {
         tempErrorsNomeInput[0].classList.add('invalid-feedback');
         tempErrorsNome[0].classList.add('is-invalid');
       }
 
-      if (data.errors.contato != '') {
+      if (response.errors.contato != '') {
         tempErrorsContatoInput[0].classList.add('invalid-feedback');
         tempErrorsContato[0].classList.add('is-invalid');
       }
       //End Bootstrap validation//
     }
 
-    if (data.reserva) {
-      location.assign('/');
+    if (response.reserva) {
+      // location.assign('/');
     }
   } catch (err) {
     console.log(err);

@@ -165,8 +165,7 @@ const getReserva = (req, res) => {
 };
 
 const addReserva = (req, res, next) => {
-  let ConcactDateTime = req.body.data + 'T' + req.body.hour + ':00';
-
+  let ConcactDateTime = req.body.data + 'T' + req.body.hora + ':00';
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

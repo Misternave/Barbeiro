@@ -75,18 +75,11 @@ app.use(
     resave: true,
   })
 );
-
-app.use(flash());
-
 //ROUTES
 app.use(routes);
 
 //NOT FOUND webpage (show default 404)
 app.all('*', function (req, res) {
-  // res.status(404).json({
-  //   status: 'fail',
-  //   message: `Não foi possivel encontrar pagina ${req.originalUrl}`,
-  // });
   res.status(404).render('404');
 });
 
